@@ -1,3 +1,6 @@
-import { someFn } from "./test";
+import { someFn } from "./test"
 
-someFn(12);
+someFn(12)
+
+// 6. 
+document.body.innerHTML = `<div> Hello world </div>`

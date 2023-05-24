@@ -22,10 +22,7 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
       rules: buildLoaders(),
     },
     resolve: buildResolvers(),
-    // ! 1. Когда у нас происходит компиляция в один файл, и вдруг в одном ловится ошибка, то
-    // ! установив данный девтулс мы можем узнать где именно ошибка есть
     devtool: 'inline-source-map',
-    // 6. 
     devServer: buildDevServer(options)
   }
 }

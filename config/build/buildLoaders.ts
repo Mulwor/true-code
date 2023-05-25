@@ -1,3 +1,4 @@
+import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import webpack from "webpack"
 
 export function buildLoaders(): webpack.RuleSetRule[] {
@@ -6,7 +7,7 @@ export function buildLoaders(): webpack.RuleSetRule[] {
   const cssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
-      "style-loader",         // Create style node from JS-strings
+      MiniCssExtractPlugin.loader,         // Create style node from JS-strings
       "css-loader",           // Translate CSS into commonJS
       "sass-loader",          // Compiles Sass to CSS
     ],

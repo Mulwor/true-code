@@ -4,14 +4,10 @@ import { Routes, Route, Link } from "react-router-dom"
 import { MainPageAsync } from "./pages/MainPage/MainPage.async"
 import { AboutPageAsync } from "./pages/AboutPage/AboutPage.async"
 import { Theme, ThemeContext } from "./theme/Theme.context"
+import { useTheme } from "./theme/useTheme"
 
 const App = () => {
-  const { theme, setTheme } = useContext(ThemeContext)
-
-  const toggleTheme = () => {
-    setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK)
-  }
-
+  const { theme, toggleTheme } = useTheme();
   return (
     <div className={`app ${theme}`}>
       <button onClick={toggleTheme}>Кнопелла</button>

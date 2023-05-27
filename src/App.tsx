@@ -1,17 +1,12 @@
-import React, { Suspense, useState } from "react"
+import React, { Suspense, useContext, useState } from "react"
 import "./styles/index.scss"
 import { Routes, Route, Link } from "react-router-dom"
 import { MainPageAsync } from "./pages/MainPage/MainPage.async"
 import { AboutPageAsync } from "./pages/AboutPage/AboutPage.async"
-
-// Перечисление тем через enum
-export enum Theme {
-  LIGHT = 'light',
-  DARK = "dark",
-}
+import { Theme, ThemeContext } from "./theme/Theme.context"
 
 const App = () => {
-  const [theme, setTheme] = useState<Theme>(Theme.LIGHT)
+  const { theme, setTheme } = useContext(ThemeContext)
 
   const toggleTheme = () => {
     setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK)

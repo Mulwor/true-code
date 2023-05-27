@@ -1,12 +1,12 @@
 import React, { Suspense } from "react"
-import "./index.scss"
+import "./styles/index.scss"
 import { Routes, Route, Link } from "react-router-dom"
 import { MainPageAsync } from "./pages/MainPage/MainPage.async"
 import { AboutPageAsync } from "./pages/AboutPage/AboutPage.async"
 
 const App = () => {
   return (
-    <div className="app">
+    <div className="app dark">
       <Link to={"/"}>Главная</Link>
       <Link to={"/about"}>О сайте</Link>
 

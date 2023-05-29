@@ -6,9 +6,6 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
   return {
     port: options.port,
     open: true,
-    //* При обновлении страницы, находясь в определенной страницы
-    //* браузера, может выдавать ошибки. Данная вещь необходимо,
-    //* чтобы она запоминала и не выдавал 404 ошибку
     historyApiFallback: true,
   }
 }

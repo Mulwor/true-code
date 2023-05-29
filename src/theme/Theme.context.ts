@@ -1,6 +1,5 @@
 import { createContext } from "react"
 
-// Перечисление тем через enum
 export enum Theme {
   LIGHT = "light",
   DARK = "dark",

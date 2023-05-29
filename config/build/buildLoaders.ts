@@ -3,11 +3,9 @@ import webpack from "webpack"
 import { BuildOptions } from "./types/config"
 
 export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
-  // * For CSS, SASS, SCSS
   const cssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
-      // Create style node from JS-strings
       isDev ? "style-loader" : MiniCssExtractPlugin.loader,
       {
         loader: "css-loader",

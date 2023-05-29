@@ -1,2 +1,0 @@
-# true-code
-Ulbi-course

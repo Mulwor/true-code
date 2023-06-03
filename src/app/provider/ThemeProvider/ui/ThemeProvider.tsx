@@ -3,7 +3,7 @@ import {
   LOCAL_STORAGE_THEME_KEY,
   Theme,
   ThemeContext,
-} from "../../../../shared/config/theme/Theme.context"
+} from "../lib/Theme.context"
 
 const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT
 

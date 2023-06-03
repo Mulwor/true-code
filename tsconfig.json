@@ -5,6 +5,10 @@
     "module": "ESNext",
     "target": "es5",
     "jsx": "react-jsx",
+    // Все экспорты, импорты будут идти из папки src
+    "paths": {
+      "*": ["./src/*"]
+    },
     "baseUrl": ".",
     "allowJs": true,
     "moduleResolution": "node",

@@ -2,7 +2,7 @@ import {
   LOCAL_STORAGE_THEME_KEY,
   Theme,
   ThemeContext,
-} from "../../../../shared/config/theme/Theme.context"
+} from "app/provider/ThemeProvider/lib/Theme.context"
 import { useContext } from "react"
 
 interface UseThemeResult {

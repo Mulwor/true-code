@@ -6,7 +6,9 @@ import { AppRouter } from "./provider/router"
 import { Navbar } from "widget/Navbar"
 
 const App = () => {
+  // * Берет из контекста цвет темы
   const { theme, toggleTheme } = useTheme()
+ 
   return (
     <div className={classNames("app", {}, [theme])}>
       <Navbar />

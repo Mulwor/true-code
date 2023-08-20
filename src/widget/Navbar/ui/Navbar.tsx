@@ -1,18 +1,23 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { classNames } from "shared/libs/classNames/classNames"
-import cls from './Navbar.module.scss'
+import cls from "./Navbar.module.scss"
+import { AppLink, AppLinkTheme } from "shared/ui/AppLink/AppLink"
 
 interface NavbarProps {
-  className?: string;
+  className?: string
 }
 
-export const Navbar = ({className}: NavbarProps) => {
+export const Navbar = ({ className }: NavbarProps) => {
   return (
     <div className={classNames(cls.navbar, {}, [className])}>
       <div className={cls.links}>
-        <Link to={"/"} className={cls.mainLink}>Главная</Link>
-        <Link to={"/about"}>О сайте</Link>
+        <AppLink theme={AppLinkTheme.SECONDARY} to={"/"} className={cls.mainLink}>
+          Главная
+        </AppLink>
+        <AppLink theme={AppLinkTheme.RED} to={"/about"}>
+          О сайте
+        </AppLink>
       </div>
     </div>
   )

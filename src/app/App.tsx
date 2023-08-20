@@ -7,13 +7,12 @@ import { Navbar } from "widget/Navbar"
 
 const App = () => {
   // * Берет из контекста цвет темы
-  const { theme, toggleTheme } = useTheme()
+  const { theme } = useTheme()
  
   return (
     <div className={classNames("app", {}, [theme])}>
       <Navbar />
       <AppRouter />
-      <button onClick={toggleTheme}>Сменить тему</button>
     </div>
   )
 }

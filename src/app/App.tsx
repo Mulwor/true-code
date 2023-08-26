@@ -4,15 +4,19 @@ import { classNames } from "shared/libs/classNames/classNames"
 import { useTheme } from "./provider/ThemeProvider"
 import { AppRouter } from "./provider/router"
 import { Navbar } from "widget/Navbar"
+import { Sidebar } from "widget/Sidebar/ui/Sidebar/Sidebar"
 
 const App = () => {
   // * Берет из контекста цвет темы
   const { theme } = useTheme()
- 
+
   return (
     <div className={classNames("app", {}, [theme])}>
       <Navbar />
-      <AppRouter />
+      <div className="content-page">
+        <Sidebar />
+        <AppRouter />
+      </div>
     </div>
   )
 }

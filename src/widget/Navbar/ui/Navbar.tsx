@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { classNames } from "shared/libs/classNames/classNames"
 import style from "./Navbar.module.scss"
 import { AppLink, AppLinkTheme } from "shared/ui/AppLink/AppLink"
-import { ThemeSwitcher } from "shared/ui/ThemeSwitcher"
 
 interface NavbarProps {
   className?: string
@@ -12,7 +11,6 @@ interface NavbarProps {
 export const Navbar = ({ className }: NavbarProps) => {
   return (
     <div className={classNames(style.navbar, {}, [className])}>
-      <ThemeSwitcher />
       <div className={style.links}>
         <AppLink theme={AppLinkTheme.SECONDARY} to={"/"} className={style.mainLink}>
           Главная

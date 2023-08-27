@@ -18,6 +18,9 @@ export function buildPlugins({paths, isDev}: BuildOptions): webpack.WebpackPlugi
     // * глоабальные переменный
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev)
-    })
+    }),
+
+    // * Данный плагин нужен для того, чтобы обновить в браузере без перезагрузки страницы
+    new webpack.HotModuleReplacementPlugin(),
   ]
 }

@@ -9,7 +9,7 @@ interface NavbarProps {
 }
 
 export function Navbar({ className }: NavbarProps) {
-  return (
+    return (
       <div className={classNames(style.navbar, {}, [className])}>
           <div className={style.links}>
               <AppLink theme={AppLinkTheme.SECONDARY} to="/" className={style.mainLink}>
@@ -18,7 +18,7 @@ export function Navbar({ className }: NavbarProps) {
               <AppLink theme={AppLinkTheme.RED} to="/about">
                   О сайте
               </AppLink>
-          </div>
-      </div>
-  );
+            </div>
+        </div>
+    );
 }

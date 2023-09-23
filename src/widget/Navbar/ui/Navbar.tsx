@@ -9,16 +9,16 @@ interface NavbarProps {
 }
 
 export function Navbar({ className }: NavbarProps) {
-    return (
-      <div className={classNames(style.navbar, {}, [className])}>
-          <div className={style.links}>
-              <AppLink theme={AppLinkTheme.SECONDARY} to="/" className={style.mainLink}>
-                  Главная
-              </AppLink>
-              <AppLink theme={AppLinkTheme.RED} to="/about">
-                  О сайте
-              </AppLink>
-            </div>
-        </div>
-    );
+  return (
+    <div className={classNames(style.navbar, {}, [className])}>
+      <div className={style.links}>
+        <AppLink theme={AppLinkTheme.SECONDARY} to="/" className={style.mainLink}>
+          Главная
+        </AppLink>
+        <AppLink theme={AppLinkTheme.RED} to="/about">
+          О сайте
+        </AppLink>
+      </div>
+    </div>
+  );
 }

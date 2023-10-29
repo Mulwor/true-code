@@ -7,7 +7,7 @@ type Mods = Record<string, boolean | string>
 // *   selectable: true,
 // *   red: true
 // *  }) => 'remove-btn hovered selectable
-export function classNames(cls: string, mods?: Mods, additional?: string[]): string {
+export function classNames(cls: string, mods: Mods = {}, additional: string[] = []): string {
   return [
     cls,
     ...additional.filter(Boolean),

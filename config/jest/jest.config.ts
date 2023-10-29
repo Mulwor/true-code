@@ -20,31 +20,16 @@ export default {
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
 
-  coveragePathIgnorePatterns: [
-    '\\\\node_modules\\\\',
-  ],
-  moduleDirectories: [
-    'node_modules',
-  ],
+  coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
+  moduleDirectories: ['node_modules'],
 
-  // An array of file extensions your modules use
-  moduleFileExtensions: [
-    'js',
-    'mjs',
-    'cjs',
-    'jsx',
-    'ts',
-    'tsx',
-    'json',
-    'node',
-  ],
+  // Массив расширений файлов, которые используют ваши модули. Если вам требуются модули без указания расширения файла, Jest будет искать эти расширения в порядке слева направо.
+  moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json', 'node'],
 
-  // The glob patterns Jest uses to detect test files
-  testMatch: [
-    '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
-  ],
+  // Используеся для обноружения тестовых файлов
+  testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
 
-  // The root directory that Jest should scan for tests and modules within
+  // Путь до корневой папки
   rootDir: '../../',
 
   // Indicates whether the coverage information should be collected while executing the test

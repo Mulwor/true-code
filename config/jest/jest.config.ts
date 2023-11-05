@@ -1,3 +1,5 @@
+import path from 'path';
+
 export default {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -41,9 +43,10 @@ export default {
   // setupFilesAfterEnv modules are meant for code which is repeating in each test file
   setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
 
-  // Для того, чтобы тесты видели scss
+  // Для того, чтобы тесты видели scss и svg
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy',
+    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
   },
 
   // Indicates whether the coverage information should be collected while executing the test

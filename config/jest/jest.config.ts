@@ -1,8 +1,4 @@
-/* eslint-disable max-len */
-/*
- * For a detailed explanation regarding each configuration property and type check, visit:
- * https://jestjs.io/docs/configuration
- */
+import path from 'path';
 
 export default {
   // All imported modules in your tests should be mocked automatically
@@ -20,17 +16,38 @@ export default {
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
 
-  coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
-  moduleDirectories: ['node_modules'],
+  coveragePathIgnorePatterns: [
+    '\\\\node_modules\\\\',
+  ],
+
+  moduleDirectories: [
+    'node_modules',
+  ],
 
   // Массив расширений файлов, которые используют ваши модули. Если вам требуются модули без указания расширения файла, Jest будет искать эти расширения в порядке слева направо.
   moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json', 'node'],
 
+  // Для абсолютных путей в url
+  modulePaths: [
+    '<rootDir>src',
+  ],
+
   // Используеся для обноружения тестовых файлов
-  testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
+  testMatch: [
+    '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
+  ],
 
   // Путь до корневой папки
   rootDir: '../../',
+
+  // setupFilesAfterEnv modules are meant for code which is repeating in each test file
+  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+
+  // Для того, чтобы тесты видели scss и svg
+  moduleNameMapper: {
+    '\\.s?css$': 'identity-obj-proxy',
+    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+  },
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,

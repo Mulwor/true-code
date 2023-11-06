@@ -1,6 +1,7 @@
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
@@ -22,5 +23,10 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
 
     // * Данный плагин нужен для того, чтобы обновить в браузере без перезагрузки страницы
     new webpack.HotModuleReplacementPlugin(),
+
+    // Открывает бандл, который показывает сколько весит весь прод
+    new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+    }),
   ];
 }

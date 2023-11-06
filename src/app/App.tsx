@@ -1,5 +1,4 @@
 import './styles/index.scss';
-import { Link } from 'react-router-dom';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { Navbar } from 'widget/Navbar';
 import { Sidebar } from 'widget/Sidebar/ui/Sidebar/Sidebar';
@@ -9,6 +8,7 @@ import { useTheme } from './provider/ThemeProvider';
 
 function App() {
   const { theme } = useTheme();
+
   return (
     <div className={classNames('app', {}, [theme])}>
       <Suspense fallback="">

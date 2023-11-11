@@ -18,6 +18,28 @@
     margin-left: 20px;
 }
 
+.collapseBtn {
+    position: absolute;
+    right: -32px;
+    bottom: 32px;
+}
+
+.items {
+    margin-top: 20px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.link {
+    margin-left: 10px;
+    opacity: 1;
+}
+
+.icon {
+    fill: var(--inverted-primary-color);
+}
+
 .collapsed {
     width: var(--sidebar-width-collapsed);
     .switchers {
@@ -27,10 +49,8 @@
     .lang {
         margin-left: 0px;
     }
-}
-
-.collapseBtn {
-    position: absolute;
-    right: -32px;
-    bottom: 32px;
+    .link {
+        opacity: 0;
+        transition: 0.2s opacity;
+    }
 }

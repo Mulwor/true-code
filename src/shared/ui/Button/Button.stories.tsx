@@ -7,9 +7,6 @@ const meta = {
   title: 'shared/Button',
   component: Button,
   tags: ['autodocs'],
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
 } satisfies Meta<typeof Button>;
 
 export default meta;

@@ -24,7 +24,9 @@ export function Sidebar({ className }: SidebarProps) {
       <Button
         data-testid="sidebar-toggle"
         onClick={onToggle}
-      >Toggle</Button>
+      >
+        Toggle
+      </Button>
       <div className={style.switchers}>
         <ThemeSwitcher />
         <LangSwitcher className={style.lang} />

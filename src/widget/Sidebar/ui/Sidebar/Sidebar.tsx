@@ -33,7 +33,7 @@ export function Sidebar({ className }: SidebarProps) {
       </Button>
       <div className={style.switchers}>
         <ThemeSwitcher />
-        <LangSwitcher className={style.lang} />
+        <LangSwitcher short={collapsed} className={style.lang} />
       </div>
     </div>
   );

@@ -22,3 +22,5 @@ dist-ssr
 
 /build
 .loki
+.loki/report.html
+.loki/report.json

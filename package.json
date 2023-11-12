@@ -11,9 +11,15 @@
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
-    "unit": "jest --config ./config/jest/jest.config.ts",
+    "test:unit": "jest --config ./config/jest/jest.config.ts",
+    "test:ui": "npx loki test",
+    "test:ui:ok": "npx loki approve",
+    "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
+    "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
+    "test:ui:json": "node scripts/generate-visual-json-report.js",
+    "test:ui:html": "reg-cli --from .loki/report.json --reports .loki/report.html",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
-    "build-storybook": "storybook build -c ./config/storybook"
+    "storybook-build": "build-storybook -c ./config/storybook"
   },
   "repository": {
     "type": "git",
@@ -31,13 +37,13 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
-    "@storybook/addon-essentials": "^7.5.2",
-    "@storybook/addon-interactions": "^7.5.2",
-    "@storybook/addon-links": "^7.5.2",
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
     "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/blocks": "^7.5.2",
-    "@storybook/react": "^7.5.2",
-    "@storybook/react-webpack5": "^7.5.2",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/react": "^7.5.3",
+    "@storybook/react-webpack5": "^7.5.3",
     "@storybook/testing-library": "^0.2.2",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/jest-dom": "^5.16.2",
@@ -66,12 +72,14 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
+    "loki": "^0.33.0",
     "mini-css-extract-plugin": "^2.7.6",
     "react-router-dom": "^6.11.2",
+    "reg-cli": "^0.17.7",
     "regenerator-runtime": "^0.14.0",
     "sass": "^1.62.1",
     "sass-loader": "^13.3.0",
-    "storybook": "^7.5.2",
+    "storybook": "^7.5.3",
     "style-loader": "^3.3.3",
     "stylelint": "^14.5.3",
     "stylelint-config-standard-scss": "^3.0.0",
@@ -92,5 +100,20 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^13.2.0"
+  },
+  "loki": {
+    "configurations": {
+      "chrome.laptop": {
+        "target": "chrome.docker",
+        "width": 1366,
+        "height": 768,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      },
+      "chrome.iphone7": {
+        "target": "chrome.docker",
+        "preset": "iPhone 7"
+      }
+    }
   }
 }

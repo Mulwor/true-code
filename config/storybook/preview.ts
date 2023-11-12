@@ -1,6 +1,10 @@
 import type { Preview } from '@storybook/react';
+import { Theme } from '../../src/app/provider/ThemeProvider';
+import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator/StyleDecorator';
+import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator';
 
-const preview: Preview = {
+export const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
@@ -12,4 +16,10 @@ const preview: Preview = {
   },
 };
 
-export default preview;
+export default {
+  decorators: [
+    StyleDecorator,
+    RouterDecorator,
+    ThemeDecorator(Theme.LIGHT),
+  ],
+};

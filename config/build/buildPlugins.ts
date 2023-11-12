@@ -5,7 +5,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
-  return [
+  const plugins = [
     new HTMLWebpackPlugin({
       template: paths.html,
     }),
@@ -20,13 +20,16 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
     }),
-
-    // * Данный плагин нужен для того, чтобы обновить в браузере без перезагрузки страницы
-    new webpack.HotModuleReplacementPlugin(),
-
-    // Открывает бандл, который показывает сколько весит весь прод
-    new BundleAnalyzerPlugin({
-      openAnalyzer: false,
-    }),
   ];
+
+  if (isDev) {
+    // * Данный плагин нужен для того, чтобы обновить в браузере без перезагрузки страницы
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+    // Открывает бандл, который показывает сколько весит весь прод
+    plugins.push(new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+    }));
+  }
+
+  return plugins;
 }

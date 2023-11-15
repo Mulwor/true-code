@@ -1,4 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, {
+  ReactNode, useState, useRef,
+} from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
 import style from './Modal.module.scss';
 
@@ -20,9 +22,17 @@ export const Modal = (props: ModalProps) => {
     onClose,
   } = props;
 
+  // Анимация для закрытие модалки
+  const [isClosing, setIsClosing] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+
   const closeHandler = () => {
     if (onClose) {
-      onClose();
+      setIsClosing(true);
+      timerRef.current = setTimeout(() => {
+        onClose();
+        setIsClosing(false);
+      }, 100);
     }
   };
 
@@ -37,6 +47,7 @@ export const Modal = (props: ModalProps) => {
   const mods: Record<string, boolean> = {
     // сработает когда переменная isOpen будет равняться true
     [style.opened]: isOpen,
+    [style.isClosing]: isClosing,
   };
 
   return (

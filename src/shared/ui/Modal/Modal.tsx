@@ -1,5 +1,5 @@
 import React, {
-  ReactNode, useState, useRef,
+  ReactNode, useState, useRef, useEffect, useCallback,
 } from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
 import style from './Modal.module.scss';
@@ -26,7 +26,7 @@ export const Modal = (props: ModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
-  const closeHandler = () => {
+  const closeHandler = useCallback(() => {
     if (onClose) {
       setIsClosing(true);
       timerRef.current = setTimeout(() => {
@@ -34,7 +34,13 @@ export const Modal = (props: ModalProps) => {
         setIsClosing(false);
       }, 100);
     }
-  };
+  }, [onClose]);
+
+  const onKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      closeHandler();
+    }
+  }, [closeHandler]);
 
   // Данный код отвечает за всплытие, то есть если бы его не было, то
   // модалка отключалось бы даже при нажатии на модалку - некий глушитель,
@@ -49,6 +55,17 @@ export const Modal = (props: ModalProps) => {
     [style.opened]: isOpen,
     [style.isClosing]: isClosing,
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener('keydown', onKeyDown);
+    }
+
+    return () => {
+      clearTimeout(timerRef.current);
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isOpen, onKeyDown]);
 
   return (
     <div className={classNames(style.Modal, mods, [className])}>

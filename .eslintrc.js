@@ -45,6 +45,8 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
+    // Нужен для того, чтобы аргументы функции в редаксе-тулките мы могли изменять
+    'no-param-reassign': 'off',
   },
   globals: {
     __IS_DEV__: true,

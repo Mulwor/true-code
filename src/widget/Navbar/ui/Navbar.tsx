@@ -23,7 +23,7 @@ export function Navbar({ className }: NavbarProps) {
         {t('Войти')}
       </Button>
       <Modal isOpen={isAuthModal} onClose={onToggleModal}>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
+        {t('Войти')}
       </Modal>
     </div>
   );

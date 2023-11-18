@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'shared/ui/Button/Button';
-import { StateShema } from 'app/provider/StoreProvider/config/StateSchema';
 import { CounterActions } from '../model/slice/counterSlice';
+import { getCounterValue } from '../model/selector/getCounterValue/getCounterValue';
 
 export const Counter = () => {
   const dispatch = useDispatch();
-  const counter = useSelector((state: StateShema) => state.counter.value);
+  const counter = useSelector(getCounterValue);
 
   const increment = () => {
-    dispatch(CounterActions.decrement());
+    dispatch(CounterActions.increment());
   };
   const decrement = () => {
-    dispatch(CounterActions.increment());
+    dispatch(CounterActions.decrement());
   };
 
   return (

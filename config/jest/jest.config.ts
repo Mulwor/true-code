@@ -10,6 +10,11 @@ export default {
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "C:\\Users\\ali\\AppData\\Local\\Temp\\jest",
 
+  // Данный объект предназначен для объявления глобальных переменных
+  globals: {
+    __IS_DEV__: true,
+  },
+
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
 

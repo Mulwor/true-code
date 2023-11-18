@@ -11,19 +11,19 @@ describe('Counter', () => {
     expect(screen.getByTestId('value-title')).toHaveTextContent('10');
   });
 
-  test.skip('Проверка по нажатию на инкримент кнопку', () => {
+  test('Проверка по нажатию на инкримент кнопку', () => {
     componentRender(<Counter />, {
       initialState: { counter: { value: 10 } },
     });
-    userEvent.click(screen.getByTestId('increment-btn'));
-    expect(screen.getByTestId('value-title')).toEqual('11');
+    userEvent.click(screen.getByTestId('plus'));
+    expect(screen.getByTestId('value-title')).toHaveTextContent('11');
   });
 
-  test.skip('Проверка по нажатию на декремент кнопку', () => {
+  test('Проверка по нажатию на декремент кнопку', () => {
     componentRender(<Counter />, {
       initialState: { counter: { value: 10 } },
     });
-    userEvent.click(screen.getByTestId('decrement-btn'));
+    userEvent.click(screen.getByTestId('minus'));
     expect(screen.getByTestId('value-title')).toHaveTextContent('9');
   });
 });

@@ -2,7 +2,6 @@ import React, {
   ReactNode, useState, useRef, useEffect, useCallback,
 } from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
-import { useTheme } from 'app/provider/ThemeProvider';
 import style from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
 
@@ -27,7 +26,6 @@ export const Modal = (props: ModalProps) => {
   // Анимация для закрытие модалки
   const [isClosing, setIsClosing] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
-  const { theme } = useTheme();
 
   const closeHandler = useCallback(() => {
     if (onClose) {
@@ -57,7 +55,6 @@ export const Modal = (props: ModalProps) => {
     // сработает когда переменная isOpen будет равняться true
     [style.opened]: isOpen,
     [style.isClosing]: isClosing,
-    [style[theme]]: true,
   };
 
   useEffect(() => {
@@ -73,7 +70,7 @@ export const Modal = (props: ModalProps) => {
 
   return (
     <Portal>
-      <div className={classNames(style.Modal, mods, [className, theme])}>
+      <div className={classNames(style.Modal, mods, [className])}>
         <div className={style.overlay} onClick={closeHandler}>
           <div className={style.content} onClick={onContentClick}>
             {children}

@@ -13,8 +13,8 @@ export const LoginForm = ({ className }: LoginFormProps) => {
 
   return (
     <div className={classNames(style.LoginForm, {}, [className])}>
-      <Input type="text" className={style.input} />
-      <Input type="text" className={style.input} />
+      <Input type="text" className={style.input} placeholder={t('Логин')} />
+      <Input type="text" className={style.input} placeholder={t('Пароль')} />
       <Button className={style.loginBtn}>
         {t('Войти')}
       </Button>

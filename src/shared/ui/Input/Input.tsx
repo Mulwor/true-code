@@ -42,6 +42,9 @@ export const Input = memo((props: InputProps) => {
   };
 
   const onSelect = (e: any) => {
+    // Нужен для передвижения каретки, другими словами у нас есть инпут поле
+    // и мы хотим эту коретке передвинуть туда куда вносим текст и это идеально
+    // нам поможет
     setCaretPosition(e?.target?.selectionStart || 0);
   };
 

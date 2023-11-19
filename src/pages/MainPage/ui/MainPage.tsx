@@ -17,7 +17,7 @@ function MainPage() {
       <BugButton />
       {t('О главной странице')}
       <Counter />
-      <Input value={value} onChange={onChange} placeholder="Введите текст" />
+      <Input value={value} onChange={onChange} placeholder={t('Инпут')} />
     </div>
   );
 }

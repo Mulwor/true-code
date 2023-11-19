@@ -13,6 +13,7 @@ export interface ModalProps {
   isOpen?: boolean;
   // Данный пропс отвечает за закрытие модального окна
   onClose?: () => void;
+  lazy?: boolean;
 }
 
 export const Modal = (props: ModalProps) => {
@@ -20,12 +21,20 @@ export const Modal = (props: ModalProps) => {
     className,
     children,
     isOpen,
+    lazy,
     onClose,
   } = props;
 
   // Анимация для закрытие модалки
   const [isClosing, setIsClosing] = useState(false);
+  const [isMounter, setIsMounted] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsMounted(true);
+    }
+  }, [isOpen]);
 
   const closeHandler = useCallback(() => {
     if (onClose) {
@@ -67,6 +76,10 @@ export const Modal = (props: ModalProps) => {
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen, onKeyDown]);
+
+  if (lazy && !isMounter) {
+    return null;
+  }
 
   return (
     <Portal>

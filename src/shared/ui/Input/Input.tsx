@@ -1,5 +1,7 @@
 import { classNames } from 'shared/libs/classNames/classNames';
-import React, { InputHTMLAttributes, memo, useState } from 'react';
+import React, {
+  InputHTMLAttributes, memo, useEffect, useRef, useState,
+} from 'react';
 import style from './Input.module.scss';
 
 // Omit - позволяет забрать из типа все пропсы, но изключить, которые нам не нужны.
@@ -10,7 +12,8 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 interface InputProps extends HTMLInputProps {
   className?: string;
   value?: string;
-  onChange?: (value: string) => void
+  onChange?: (value: string) => void;
+  autofocus?: boolean;
 }
 
 // memo - позволяет избежать лищних перерисовок
@@ -21,12 +24,21 @@ export const Input = memo((props: InputProps) => {
     onChange,
     type = 'text',
     placeholder,
+    autofocus,
     ...otherProps
   } = props;
 
   // Каретка когда она в фокусе
   const [isFocused, setIsFocused] = useState(false);
   const [caretPosition, setCaretPosition] = useState(0);
+  const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (autofocus) {
+      setIsFocused(true);
+      ref.current?.focus();
+    }
+  }, [autofocus]);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
@@ -57,6 +69,7 @@ export const Input = memo((props: InputProps) => {
       )}
       <div className={style.caretWrapper}>
         <input
+          ref={ref}
           type={type}
           value={value}
           onChange={onChangeHandler}
@@ -64,6 +77,7 @@ export const Input = memo((props: InputProps) => {
           onFocus={onFocus}
           onBlur={onBlur}
           onSelect={onSelect}
+          {...otherProps}
         />
 
         {isFocused && (

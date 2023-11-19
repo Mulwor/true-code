@@ -1,5 +1,5 @@
 import { classNames } from 'shared/libs/classNames/classNames';
-import React, { InputHTMLAttributes, memo } from 'react';
+import React, { InputHTMLAttributes, memo, useState } from 'react';
 import style from './Input.module.scss';
 
 // Omit - позволяет забрать из типа все пропсы, но изключить, которые нам не нужны.
@@ -20,16 +20,46 @@ export const Input = memo((props: InputProps) => {
     value,
     onChange,
     type = 'text',
+    placeholder,
     ...otherProps
   } = props;
+
+  // Каретка когда она в фокусе
+  const [isFocused, setIsFocused] = useState(false);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
   };
 
+  const onBlur = () => {
+    setIsFocused(false);
+  };
+
+  const onFocus = () => {
+    setIsFocused(true);
+  };
+
   return (
-    <div className={classNames(style.Input, {}, [className])}>
-      <input type={type} value={value} onChange={onChangeHandler} />
+    <div className={classNames(style.InputWrapper, {}, [className])}>
+      {placeholder && (
+        <div className={style.placeholder}>
+          {`${placeholder}>`}
+        </div>
+      )}
+      <div className={style.caretWrapper}>
+        <input
+          type={type}
+          value={value}
+          onChange={onChangeHandler}
+          className={style.input}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+
+        {isFocused && (
+          <span className={style.caret} />
+        )}
+      </div>
     </div>
   );
 });

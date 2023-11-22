@@ -4,7 +4,8 @@ import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { useDispatch, useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
-import { getLoginState } from 'features/AuthByUsername/model/selectors/getLoginState/getLoginState';
+import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
 import { loginActions } from '../../model/slice/loginSlice';
 import style from './LoginForm.module.scss';
 
@@ -25,6 +26,10 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
     dispatch(loginActions.setPassword(value));
   }, [dispatch]);
 
+  const onLoginClick = useCallback(() => {
+    dispatch(loginByUsername({ username, password }));
+  }, [dispatch, username, password]);
+
   return (
     <div className={classNames(style.LoginForm, {}, [className])}>
       <Input
@@ -41,7 +46,11 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
         onChange={onChangePassword}
         value={password}
       />
-      <Button className={style.loginBtn} theme={ThemeButton.OUTLINE}>
+      <Button
+        className={style.loginBtn}
+        theme={ThemeButton.OUTLINE}
+        onClick={onLoginClick}
+      >
         {t('Войти')}
       </Button>
     </div>

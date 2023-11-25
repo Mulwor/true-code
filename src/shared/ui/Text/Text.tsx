@@ -1,6 +1,4 @@
-import React from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
-import { Theme } from 'app/provider/ThemeProvider';
 import style from './Text.module.scss';
 
 export enum TextTheme {

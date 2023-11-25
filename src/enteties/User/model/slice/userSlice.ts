@@ -9,20 +9,27 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    // Отправляет данные через редакс
+    // Сохраняем данные в стейт
     setAuthData: (state, action: PayloadAction<User>) => {
       state.authData = action.payload;
     },
 
     // Когда пользователь открывает и закрывает вкладчку, нам необходимо
     // определить авторизован ли пользователь
-    initAuthData: (state, action: PayloadAction<User>) => {
+    initAuthData: (state) => {
       const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
       // Если нам вернулся не null, не undefined из локалстоража, то
       // эти данные в state помещаем
       if (user) {
         state.authData = JSON.parse(user);
       }
+    },
+
+    // Логика для выхода из системы
+    logout: (state) => {
+      // Очищаем стейт, делаем его undefined и удаляем токен
+      state.authData = undefined;
+      localStorage.removeItem(USER_LOCALSTORAGE_KEY);
     },
   },
 });

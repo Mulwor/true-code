@@ -11,5 +11,8 @@
   "Короткий язык": "en",
   "Инпут": "input",
   "Логин": "login",
-  "Пароль": "password"
+  "Пароль": "password",
+  "Вы ввели неверный логин или пароль": "You wrote wrong login and password",
+  "Форма авторизации": "Auth Form",
+  "Войти": "Login"
 }

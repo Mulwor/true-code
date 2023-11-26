@@ -9,15 +9,12 @@ interface StoreProviderProps {
   initialState?: DeepPartial<StateShema>;
 }
 
-// Провайдер, который обычно лежит в корневом элементе App, он необходим
-// для работоспособности redux
 export const StoreProvider = (props: StoreProviderProps) => {
   const {
     children,
     initialState,
   } = props;
 
-  // Внутри стора находится функция, которая создает редюсеры с начальным значением
   const store = createReduxStore(initialState as StateShema);
 
   return (

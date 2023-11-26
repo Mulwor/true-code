@@ -15,17 +15,13 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
       chunkFilename: 'css/[name].[contenthash:8].css',
     }),
 
-    // * C помощью данного плагина в само приложения можно прокидывать
-    // * глоабальные переменный
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
     }),
   ];
 
   if (isDev) {
-    // * Данный плагин нужен для того, чтобы обновить в браузере без перезагрузки страницы
     plugins.push(new webpack.HotModuleReplacementPlugin());
-    // Открывает бандл, который показывает сколько весит весь прод
     plugins.push(new BundleAnalyzerPlugin({
       openAnalyzer: false,
     }));

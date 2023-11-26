@@ -21,7 +21,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: ThemeButton;
   square?: boolean;
   size?: ButtonSize;
-  // В момент отправки загрузки кнопка будет не активной
   disabled?: boolean;
 }
 

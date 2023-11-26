@@ -24,7 +24,6 @@ export const loginSlice = createSlice({
       state.password = action.payload;
     },
   },
-  // Для ассинхронных запросов используется
   extraReducers: (builder) => {
     builder
       .addCase(loginByUsername.pending, (state) => {

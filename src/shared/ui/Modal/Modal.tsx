@@ -7,11 +7,8 @@ import { Portal } from '../Portal/Portal';
 
 export interface ModalProps {
   className?: string;
-  // Данный пропс необходим для передачи содержимого
   children?: ReactNode;
-  // Данный пропс отвечает за определение открытости модального окна
   isOpen?: boolean;
-  // Данный пропс отвечает за закрытие модального окна
   onClose?: () => void;
   lazy?: boolean;
 }
@@ -25,7 +22,6 @@ export const Modal = (props: ModalProps) => {
     onClose,
   } = props;
 
-  // Анимация для закрытие модалки
   const [isClosing, setIsClosing] = useState(false);
   const [isMounter, setIsMounted] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
@@ -52,16 +48,11 @@ export const Modal = (props: ModalProps) => {
     }
   }, [closeHandler]);
 
-  // Данный код отвечает за всплытие, то есть если бы его не было, то
-  // модалка отключалось бы даже при нажатии на модалку - некий глушитель,
-  // чтобы она не отключалось.
   const onContentClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
-  // Нужен для добавлнеия нужных стилей в будущем
   const mods: Record<string, boolean> = {
-    // сработает когда переменная isOpen будет равняться true
     [style.opened]: isOpen,
     [style.isClosing]: isClosing,
   };

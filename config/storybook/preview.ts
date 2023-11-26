@@ -20,6 +20,7 @@ export default {
   decorators: [
     StyleDecorator,
     RouterDecorator,
+    StyleDecorator,
     ThemeDecorator(Theme.LIGHT),
   ],
 };

@@ -25,6 +25,13 @@ export const Clear: Story = {
   },
 };
 
+export const ClearInverted: Story = {
+  args: {
+    children: 'Text',
+    theme: ThemeButton.CLEAR_INVERTED,
+  },
+};
+
 export const Outline: Story = {
   args: {
     children: 'Text',
@@ -93,5 +100,13 @@ export const SquareSizeXL: Story = {
     theme: ThemeButton.BACKGROUND_INVERTED,
     square: true,
     size: ButtonSize.XL,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    children: '>',
+    theme: ThemeButton.OUTLINE,
+    disabled: true,
   },
 };

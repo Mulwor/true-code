@@ -10,6 +10,11 @@ export default {
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "C:\\Users\\ali\\AppData\\Local\\Temp\\jest",
 
+  // Данный объект предназначен для объявления глобальных переменных
+  globals: {
+    __IS_DEV__: true,
+  },
+
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
 
@@ -47,6 +52,7 @@ export default {
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy',
     '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    axios: 'axios/dist/node/axios.cjs',
   },
 
   // Indicates whether the coverage information should be collected while executing the test

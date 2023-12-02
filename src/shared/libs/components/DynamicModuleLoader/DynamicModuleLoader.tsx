@@ -3,34 +3,49 @@ import { ReduxStoreWithManager, StateSchemaKey } from 'app/provider/StoreProvide
 import { FC, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 
+/*
+export interface StateShema {
+  counter: CounterScheme;
+  user: UserSchema;
+  loginForm?: LoginSchema;
+}
+export type StateSchemaKey = keyof StateShema;
+*/
+
+export type ReducersList = {
+  [name in StateSchemaKey]?: Reducer
+}
+
+type ReducersListEntry = [StateSchemaKey, Reducer]
+
 interface DynamicModuleLoaderProps {
-  name: StateSchemaKey;
-  reducer: Reducer;
+  reducers: ReducersList;
   removeAfterUnmount?: boolean;
 }
 
 export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
   const {
     children,
-    name,
-    reducer,
+    reducers,
     removeAfterUnmount,
   } = props;
   const store = useStore() as ReduxStoreWithManager;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // В момент монтирование компонента, мы добавляем редюсер
-    store.reducerManager.add(name, reducer);
-
-    dispatch({ type: `@INIT ${name} reducer` });
+    // Object.entries() метод возвращает массив собственных перечисляемых свойств указанного
+    // объекта в формате [key, value в том же порядке
+    Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
+      store.reducerManager.add(name, reducer);
+      dispatch({ type: `@INIT ${name} reducer` });
+    });
 
     return () => {
       if (removeAfterUnmount) {
-        // Когда компонент нам не нужен (демонтируется) мы этот редюсер
-        // снова удаляем
-        store.reducerManager.remove(name);
-        dispatch({ type: `@DESTROY ${name} reducer` });
+        Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
+          store.reducerManager.remove(name);
+          dispatch({ type: `@DESTROY ${name} reducer` });
+        });
       }
     };
     // eslint-disable-next-line

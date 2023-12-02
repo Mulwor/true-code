@@ -7,7 +7,7 @@ import { memo, useCallback, useEffect } from 'react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import i18n from 'shared/config/i18n/i18n';
 import { ReduxStoreWithManager } from 'app/provider/StoreProvider/config/StateSchema';
-import { DynamicModuleLoader } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
@@ -19,6 +19,10 @@ import style from './LoginForm.module.scss';
 export interface LoginFormProps {
   className?: string
 }
+
+const initialReducers: ReducersList = {
+  loginForm: loginReducer,
+};
 
 const LoginForm = memo(({ className }: LoginFormProps) => {
   const { t } = useTranslation();
@@ -44,7 +48,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
 
   return (
     // eslint-disable-next-line i18next/no-literal-string
-    <DynamicModuleLoader removeAfterUnmount name="loginForm" reducer={loginReducer}>
+    <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
       <div className={classNames(style.LoginForm, {}, [className])}>
         <Text title={t('Форма авторизации')} />
         {error && <Text text={i18n.t('Вы ввели неверный логин или пароль')} theme={TextTheme.ERROR} />}

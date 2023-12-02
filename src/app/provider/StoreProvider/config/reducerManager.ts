@@ -3,6 +3,7 @@ import {
 } from '@reduxjs/toolkit';
 import { ReducerManager, StateSchemaKey, StateShema } from './StateSchema';
 
+// С помощью него мы можем добавлять в рантайме какие-то редьюсеры
 export function createReducerManager(initialReducers: ReducersMapObject<StateShema>) : ReducerManager {
   const reducers = { ...initialReducers };
   // Много редьюеров превращает в один общий

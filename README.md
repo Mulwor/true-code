@@ -8,3 +8,5 @@
 - TS-StrictMode;
 - Изменение типов;
 - Конфиг для санков;
+
+Чтобы игнорировать husky (pre-commit) необходимо написать git commit --no-verify

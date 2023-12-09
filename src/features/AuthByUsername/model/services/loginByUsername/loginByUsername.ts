@@ -10,9 +10,10 @@ interface LoginByUsernameProps {
 
 export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, { rejectValue: string }>(
   'login/loginByUsername',
-  async (authData, thunkAPI) => {
+  async (authData, { extra, dispatch, rejectWithValue }) => {
     try {
-      const response = await axios.post<User>('http://localhost:8000/login', authData);
+      // @ts-ignore
+      const response = await extra.api.post<User>('/login', authData);
 
       if (!response.data) {
         throw new Error();
@@ -20,12 +21,13 @@ export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, { re
 
       localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data));
       // Сохраняет данные в стейте
-      thunkAPI.dispatch(userActions.setAuthData(response.data));
-
+      dispatch(userActions.setAuthData(response.data));
+      // @ts-ignore
+      extra.navigate('/about');
       return response.data;
     } catch (error) {
       console.log(error);
-      return thunkAPI.rejectWithValue('error');
+      return rejectWithValue('error');
     }
   },
 );

@@ -15,7 +15,7 @@ function MainPage() {
   return (
     <div>
       <BugButton />
-      {t('О главной странице')}
+      {t('Главная страница')}
       <Counter />
       <Input value={value} onChange={onChange} placeholder={t('Инпут')} autofocus />
     </div>

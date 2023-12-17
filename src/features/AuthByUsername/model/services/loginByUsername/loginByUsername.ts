@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ThunkConfig } from 'app/provider/StoreProvider/config/StateSchema';
 import { User, userActions } from 'enteties/User';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 
@@ -7,11 +8,12 @@ interface LoginByUsernameProps {
   password: string;
 }
 
-export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, { rejectValue: string }>(
+export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, ThunkConfig<string>>(
   'login/loginByUsername',
-  async (authData, { extra, dispatch, rejectWithValue }) => {
+  async (authData, thunkApi) => {
+    const { extra, dispatch, rejectWithValue } = thunkApi;
+
     try {
-      // @ts-ignore
       const response = await extra.api.post<User>('/login', authData);
 
       if (!response.data) {
@@ -21,7 +23,6 @@ export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, { re
       localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data));
       // Сохраняет данные в стейте
       dispatch(userActions.setAuthData(response.data));
-      // @ts-ignore
       extra.navigate('/about');
       return response.data;
     } catch (error) {

@@ -5,7 +5,7 @@ import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 // А если у нас режим продакшн, то укажем ссылку на продакшн
 // const baseUrl = __IS_DEV__ ? 'http://localhost:8000' : 'https://production.ru';
 
-// Второй способ - переопределить страницу создаем еще одну глоб.переменную: __API__
+// Второй способ - переопределить страницу создаем еще одну глоб.переменную: _
 
 export const $api = axios.create({
   baseURL: __API__,

@@ -13,7 +13,7 @@ export default {
   // Данный объект предназначен для объявления глобальных переменных
   globals: {
     __IS_DEV__: true,
-    __API__: '',
+    __API__: true,
   },
 
   // Automatically clear mock calls, instances, contexts and results before every test

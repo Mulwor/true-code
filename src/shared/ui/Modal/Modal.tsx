@@ -1,7 +1,7 @@
 import React, {
-  ReactNode, useState, useRef, useEffect, useCallback,
+  ReactNode, useState, useRef, useEffect, useCallback, MutableRefObject,
 } from 'react';
-import { classNames } from 'shared/libs/classNames/classNames';
+import { Mods, classNames } from 'shared/libs/classNames/classNames';
 import style from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
 
@@ -24,7 +24,7 @@ export const Modal = (props: ModalProps) => {
 
   const [isClosing, setIsClosing] = useState(false);
   const [isMounter, setIsMounted] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   useEffect(() => {
     if (isOpen) {
@@ -52,7 +52,7 @@ export const Modal = (props: ModalProps) => {
     e.stopPropagation();
   };
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [style.opened]: isOpen,
     [style.isClosing]: isClosing,
   };

@@ -9,6 +9,7 @@
       "*": ["./src/*"]
     },
     "baseUrl": ".",
+    "strict": true,
     "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true,

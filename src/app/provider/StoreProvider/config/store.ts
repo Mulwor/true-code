@@ -1,4 +1,6 @@
-import { ReducersMapObject, configureStore } from '@reduxjs/toolkit';
+import {
+  CombinedState, Reducer, ReducersMapObject, configureStore,
+} from '@reduxjs/toolkit';
 import { counterReducer } from 'enteties/Counter';
 import { userReducer } from 'enteties/User';
 import { $api } from 'shared/api/api';
@@ -25,8 +27,7 @@ export function createReduxStore(
   };
 
   const store = configureStore({
-    // @ts-ignore
-    reducer: reducerManager.reduce as ReducersMapObject<StateShema>,
+    reducer: reducerManager.reduce as Reducer<CombinedState<StateShema>>,
     devTools: __IS_DEV__,
     preloadedState: initialState,
     // Мидлвары (middlewares) — это функции, которые последовательно

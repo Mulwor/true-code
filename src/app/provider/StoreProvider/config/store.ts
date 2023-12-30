@@ -3,7 +3,7 @@ import { counterReducer } from 'enteties/Counter';
 import { userReducer } from 'enteties/User';
 import { $api } from 'shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
-import { StateShema } from './StateSchema';
+import { StateShema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
 export function createReduxStore(
@@ -19,8 +19,14 @@ export function createReduxStore(
 
   const reducerManager = createReducerManager(rootReducers);
 
+  const extraArg: ThunkExtraArg = {
+    api: $api,
+    navigate,
+  };
+
   const store = configureStore({
-    reducer: reducerManager.reduce,
+    // @ts-ignore
+    reducer: reducerManager.reduce as ReducersMapObject<StateShema>,
     devTools: __IS_DEV__,
     preloadedState: initialState,
     // Мидлвары (middlewares) — это функции, которые последовательно
@@ -30,10 +36,7 @@ export function createReduxStore(
     // В этот момент данные проходят через мидлвары и затем попадают в редьюсер
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       thunk: {
-        extraArgument: {
-          api: $api,
-          navigate,
-        },
+        extraArgument: extraArg,
       },
     }),
   });

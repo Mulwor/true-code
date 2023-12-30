@@ -35,15 +35,15 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
   useEffect(() => {
     // Object.entries() метод возвращает массив собственных перечисляемых свойств указанного
     // объекта в формате [key, value в том же порядке
-    Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
-      store.reducerManager.add(name, reducer);
+    Object.entries(reducers).forEach(([name, reducer]) => {
+      store.reducerManager.add(name as StateSchemaKey, reducer);
       dispatch({ type: `@INIT ${name} reducer` });
     });
 
     return () => {
       if (removeAfterUnmount) {
-        Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
-          store.reducerManager.remove(name);
+        Object.entries(reducers).forEach(([name, reducer]) => {
+          store.reducerManager.remove(name as StateSchemaKey);
           dispatch({ type: `@DESTROY ${name} reducer` });
         });
       }

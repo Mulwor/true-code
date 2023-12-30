@@ -30,12 +30,12 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateShema> {
   reducerManager: ReducerManager
 }
 
-export interface ThunkExtraArt {
+export interface ThunkExtraArg {
   api: AxiosInstance
-  navigate: (to: To, options?: NavigateOptions) => void;
+  navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {
   rejectValue: T,
-  extra: ThunkExtraArt
+  extra: ThunkExtraArg,
 }

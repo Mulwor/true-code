@@ -16,8 +16,6 @@ interface ProfilePageProps {
 const ProfilePage = ({ className }: ProfilePageProps) => {
   const { t } = useTranslation();
 
-  // 3. Вызываем кастомный диспатчик, который записываем в useEffect и проверяем вызвался
-  // данные о профиле
   const dispatch = useAppDispatch();
 
   useEffect(() => {

@@ -13,8 +13,6 @@ export const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {},
-  // 2. А здесь мы вызываем екстраредьюсеры, которые как раз и сохраняем полученные
-  // данный в стейт
   extraReducers: (builder) => {
     builder
       .addCase(fetchProfileData.pending, (state) => {
@@ -25,7 +23,6 @@ export const profileSlice = createSlice({
         fetchProfileData.fulfilled,
         (state, action: PayloadAction<Profile>) => {
           state.isLoading = false;
-          // Сохраняем полученные данные от сервера в стейт
           state.data = action.payload;
         },
       )

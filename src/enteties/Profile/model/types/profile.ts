@@ -15,7 +15,5 @@ export interface ProfileSchema {
   data?: Profile;
   isLoading: boolean;
   error?: string;
-  // Состояние за которое отвечает доступен ли пользователю редактирования
-  // или он только в режиме для чтения
   readonly: boolean;
 }

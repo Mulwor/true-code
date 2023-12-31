@@ -1,14 +1,6 @@
-import axios from 'axios';
-import { StateShema } from 'app/provider/StoreProvider';
-import { Dispatch } from '@reduxjs/toolkit';
 import { userActions } from 'enteties/User';
 import { TestAsyncThunk } from 'shared/libs/tests/TestAsyncThunk/TestAsyncThunk';
 import { loginByUsername } from './loginByUsername';
-
-// Моки — это заглушки(заменитель, подделка) для функций(модулей), которые имитируют поведение реальных объектов, но
-// не выполняют их реальной логики. Другими словами т, что они предоставляют похожий интерфейс или поведение,
-// которое можно контролировать в тестах, но при этом не обращаются к внешним системам или не выполняют
-// сложные операции.
 
 describe('loginByUsername.test', () => {
   /*
@@ -49,11 +41,9 @@ describe('loginByUsername.test', () => {
     const action = loginByUsername({ username: 'Valera', password: '123' });
     const result = await action(dispatch, getState, undefined);
 
-    // Убеждаемся в том, что dispatch был вызван 2 раза в случае ошибки
     expect(dispatch).toHaveBeenCalledTimes(2);
     expect(mockedAxios.post).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('rejected');
-    // Также проверяем, что в случае ошибки payload равняется error
     expect(result.payload).toBe('error');
   });
   */
@@ -77,11 +67,9 @@ describe('loginByUsername.test', () => {
     thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
     const result = await thunk.callThunk({ username: 'Valera', password: '123' });
 
-    // Убеждаемся в том, что dispatch был вызван 2 раза в случае ошибки
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
     expect(thunk.api.post).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('rejected');
-    // Также проверяем, что в случае ошибки payload равняется error
     expect(result.payload).toBe('error');
   });
 });

@@ -3,7 +3,6 @@ import { BuildOptions } from './types/config';
 import { buildCssLoader } from './loaders/buildCssLoader';
 
 export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
-  // * For SVG
   const svgLoader = {
     test: /\.svg$/,
     use: ['@svgr/webpack'],
@@ -11,7 +10,6 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
 
   const cssLoader = buildCssLoader(isDev);
 
-  // * For TypeScript
   const typescriptLoader = {
     test: /\.tsx?$/,
     use: 'ts-loader',

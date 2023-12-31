@@ -3,15 +3,6 @@ import { ReduxStoreWithManager, StateSchemaKey } from 'app/provider/StoreProvide
 import { FC, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 
-/*
-export interface StateShema {
-  counter: CounterScheme;
-  user: UserSchema;
-  loginForm?: LoginSchema;
-}
-export type StateSchemaKey = keyof StateShema;
-*/
-
 export type ReducersList = {
   [name in StateSchemaKey]?: Reducer
 }
@@ -33,8 +24,6 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Object.entries() метод возвращает массив собственных перечисляемых свойств указанного
-    // объекта в формате [key, value в том же порядке
     Object.entries(reducers).forEach(([name, reducer]) => {
       store.reducerManager.add(name as StateSchemaKey, reducer);
       dispatch({ type: `@INIT ${name} reducer` });

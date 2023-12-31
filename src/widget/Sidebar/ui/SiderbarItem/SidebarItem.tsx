@@ -5,21 +5,11 @@ import { classNames } from 'shared/libs/classNames/classNames';
 import style from './SidebarItem.module.scss';
 import { SidebarItemType } from '../../model/items';
 
-/*
-export interface SidebarItemType {
-  path: string;
-  text: string;
-  Icon: React.VFC<React.SVGProps<SVGSVGElement>>;
-}
-*/
-
 interface SidebarItemProps {
   item: SidebarItemType;
   collapsed: boolean;
 }
 
-// 3.
-// Пока не кликнем на сайдбар он не будет перерисовывать, так как пропсы у него еще не поменялись
 export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
   const { t } = useTranslation();
 

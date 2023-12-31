@@ -23,7 +23,6 @@ export const ProfileCard = ({ className }: ProfileCardProps) => {
     <div className={classNames(style.ProfileCard, {}, [className])}>
       <div className={style.header}>
         <Text title={t('Профиль')} />
-        {/* Дальнейший функционал - при нажатии на кнопку, человек может редактировать */}
         <Button
           className={style.editProfile}
           theme={ThemeButton.OUTLINE}

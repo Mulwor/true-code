@@ -1,11 +1,9 @@
-import { DeepPartial } from '@reduxjs/toolkit';
 import { StateShema } from 'app/provider/StoreProvider';
 import { getCounter } from './getCounter';
 
 describe('Получения ключа и значения', () => {
   test('Проверяет то, что данный селектор возвращает тот участок стейта, который нам нужен, то есть объект с ключом value и значением 10', () => {
     const state: DeepPartial<StateShema> = {
-      // DeepPartian - позволяет проигнорировать все поля, и объявить те которые необходимы.
       counter: { value: 10 },
     };
 

@@ -10,7 +10,6 @@ describe('Button', () => {
   test('Тест на проверку: что в кнопке будет класс clear', () => {
     render(<Button theme={ThemeButton.CLEAR}>TEST</Button>);
     expect(screen.getByText('TEST')).toHaveClass('clear');
-    // Чтобы увидеть какая разметка отрендерилась
     screen.debug();
   });
 });

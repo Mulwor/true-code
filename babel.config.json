@@ -2,8 +2,6 @@
   "presets": [
     "@babel/preset-env", 
     "@babel/preset-typescript", 
-    // При установке react testing library необходимо написать это, чтобы реакт
-    // не высвечивался для добавления в тестах. А был во время рантайма автоматичке
     ["@babel/preset-react", {
       "runtime": "automatic"
     }]

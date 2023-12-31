@@ -1,26 +1,53 @@
-import { ReducersMapObject, configureStore } from '@reduxjs/toolkit';
+import {
+  CombinedState, Reducer, ReducersMapObject, configureStore,
+} from '@reduxjs/toolkit';
 import { counterReducer } from 'enteties/Counter';
 import { userReducer } from 'enteties/User';
-import { loginReducer } from 'features/AuthByUsername';
-import { StateShema } from './StateSchema';
+import { $api } from 'shared/api/api';
+import { NavigateOptions, To } from 'react-router-dom';
+import { StateShema, ThunkExtraArg } from './StateSchema';
+import { createReducerManager } from './reducerManager';
 
-export function createReduxStore(initialState?: StateShema) {
-  // Представляет из себя типизацию объекта, чье значение, cоответствует различным редьюсером. Это устраняет следующию ошибку на строке 16
-  // Type '{ counter: any; }' is not assignable to type 'Reducer<StateShema, AnyAction> | ReducersMapObject<StateShema, AnyAction>'.
-  // Property 'user' is missing in type '{ counter: any; }' but required in type 'ReducersMapObject<StateShema, AnyAction>
+export function createReduxStore(
+  initialState?: StateShema,
+  asyncReducers?: ReducersMapObject<StateShema>,
+  navigate?: (to: To, options?: NavigateOptions) => void,
+) {
   const rootReducers: ReducersMapObject<StateShema> = {
+    ...asyncReducers,
     counter: counterReducer,
     user: userReducer,
-    loginForm: loginReducer,
   };
 
-  return configureStore<StateShema>({
-    reducer: rootReducers,
+  const reducerManager = createReducerManager(rootReducers);
 
-    // Можем отключить девтулсы для продакшена
+  const extraArg: ThunkExtraArg = {
+    api: $api,
+    navigate,
+  };
+
+  const store = configureStore({
+    reducer: reducerManager.reduce as Reducer<CombinedState<StateShema>>,
     devTools: __IS_DEV__,
-
-    // Является опциональным, берет исходное значение из стора
     preloadedState: initialState,
+    // Мидлвары (middlewares) — это функции, которые последовательно
+    // вызываются во время обновления данных в хранилище.
+    // Сначала мидлвары встраиваются в хранилище при его создании
+    // Затем начинается отправка действий (диспатчинга)
+    // В этот момент данные проходят через мидлвары и затем попадают в редьюсер
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      thunk: {
+        extraArgument: extraArg,
+      },
+    }),
   });
+
+  // @ts-ignore
+  store.reducerManager = reducerManager;
+
+  return store;
 }
+
+// Берем typeof от функции, и мы получаем тип того, что это функция
+// должна вернуть
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']

@@ -4,9 +4,6 @@ import React, {
 } from 'react';
 import style from './Input.module.scss';
 
-// Omit - позволяет забрать из типа все пропсы, но изключить, которые нам не нужны.
-// Первым аргументов через запятую передаем то, что хотим забрать, а вторым то, что
-// исключить: забираем value, исключаем onChange
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
 
 interface InputProps extends HTMLInputProps {
@@ -16,7 +13,6 @@ interface InputProps extends HTMLInputProps {
   autofocus?: boolean;
 }
 
-// memo - позволяет избежать лищних перерисовок
 export const Input = memo((props: InputProps) => {
   const {
     className,
@@ -28,7 +24,6 @@ export const Input = memo((props: InputProps) => {
     ...otherProps
   } = props;
 
-  // Каретка когда она в фокусе
   const [isFocused, setIsFocused] = useState(false);
   const [caretPosition, setCaretPosition] = useState(0);
   const ref = useRef<HTMLInputElement>(null);
@@ -54,9 +49,6 @@ export const Input = memo((props: InputProps) => {
   };
 
   const onSelect = (e: any) => {
-    // Нужен для передвижения каретки, другими словами у нас есть инпут поле
-    // и мы хотим эту коретке передвинуть туда куда вносим текст и это идеально
-    // нам поможет
     setCaretPosition(e?.target?.selectionStart || 0);
   };
 

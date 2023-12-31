@@ -32,6 +32,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'warn',
     'react/function-component-definition': 'off',
     'no-shadow': 'off',
+    'no-undef': 'off',
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-underscore-dangle': 'off',
@@ -50,6 +51,7 @@ module.exports = {
   },
   globals: {
     __IS_DEV__: true,
+    __API__: true,
   },
   // Для определенного типа файлов переобпределить какие-то правила.
   // В данном случае в тестах он игнорирует i18n

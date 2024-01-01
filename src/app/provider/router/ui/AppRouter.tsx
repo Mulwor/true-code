@@ -5,7 +5,7 @@ import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
 
 function AppRouter() {
   return (
-    <div>
+    <div className="wrapper">
       <Routes>
         {Object.values(routeConfig).map(({ path, element }) => (
           <Route

@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
+import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducersList = {
   profile: profileReducer,
@@ -32,6 +33,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <div className={classNames('', {}, [className])}>
+        <ProfilePageHeader />
         <ProfileCard
           data={data}
           isLoading={isLoading}

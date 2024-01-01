@@ -60,16 +60,6 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
   return (
     <div className={classNames(style.ProfileCard, {}, [className])}>
-      <div className={style.header}>
-        <Text title={t('profile')} />
-        <Button
-          className={style.editProfile}
-          theme={ThemeButton.OUTLINE}
-        >
-          {t('edit')}
-        </Button>
-      </div>
-
       <div className={style.data}>
         <Input
           value={data?.first}

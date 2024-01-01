@@ -4,5 +4,7 @@
   "name": "Name",
   "surname": "Surname",
   "error-profile": "There was an error loading your profile",
-  "refresh-page": "Try refreshing the page"
+  "refresh-page": "Try refreshing the page",
+  "cancel": "Cancel"
+
 }

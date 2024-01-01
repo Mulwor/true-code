@@ -27,3 +27,7 @@ export {
 export {
   getProfileError,
 } from './model/selectors/getProfileError/getProfileError';
+
+export {
+  getProfileReadonly,
+} from './model/selectors/getProfileReadonly/getProfileReadonly';

@@ -1,8 +1,8 @@
 import {
   ProfileCard,
   fetchProfileData,
-  getProfileData,
   getProfileError,
+  getProfileForm,
   getProfileIsLoading,
   getProfileReadonly,
   profileActions,
@@ -24,7 +24,7 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
-  const data = useSelector(getProfileData);
+  const formData = useSelector(getProfileForm);
   const isLoading = useSelector(getProfileIsLoading);
   const error = useSelector(getProfileError);
   const readonly = useSelector(getProfileReadonly);
@@ -48,7 +48,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
       <div className={classNames('', {}, [className])}>
         <ProfilePageHeader />
         <ProfileCard
-          data={data}
+          data={formData}
           isLoading={isLoading}
           error={error}
           onChangeFirstname={onChangeFirstname}

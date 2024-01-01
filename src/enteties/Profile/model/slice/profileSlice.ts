@@ -16,10 +16,14 @@ export const profileSlice = createSlice({
     setReadonly: (state, action: PayloadAction<boolean>) => {
       state.readonly = action.payload;
     },
+    cancelEdit: (state) => {
+      state.readonly = true;
+      // Необходимо в поле форму вернуть ответ, который получили
+      // с сервера, то есть сбрасываем все что вводили в инпут
+      state.form = state.data;
+    },
     updateProfile: (state, action: PayloadAction<Profile>) => {
-      state.data = {
-        // Создаем новый объект, разворачиваем в него старую дату и новую дату
-        // Если какое-то поле обновим, то оно перезатрется
+      state.form = {
         ...state.data,
         ...action.payload,
       };
@@ -36,6 +40,7 @@ export const profileSlice = createSlice({
         (state, action: PayloadAction<Profile>) => {
           state.isLoading = false;
           state.data = action.payload;
+          state.form = action.payload;
         },
       )
       .addCase(fetchProfileData.rejected, (state, action) => {

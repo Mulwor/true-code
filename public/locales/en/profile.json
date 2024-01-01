@@ -1,8 +1,8 @@
 {
-  "Профиль": "Профиль",
-  "Редактировать": "Редактировать",
-  "Ваша фамилия": "Ваша фамилия",
-  "Ваше имя": "Ваше имя",
-  "Произошла ошибка при загрузке профиля": "Error",
-  "Попробуйте обновить страницу": "Re-render page"
+  "profile": "Profile",
+  "edit": "Edit",
+  "name": "Name",
+  "surname": "Surname",
+  "error-profile": "There was an error loading your profile",
+  "refresh-page": "Try refreshing the page"
 }

@@ -24,11 +24,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
   } = props;
 
   const { t } = useTranslation('profile');
-  // 0. Вынесли селектора на уровень выше в ПрофильПейдж, чтобы
-  // в дальнейшем было проще создавать карточки профиля, а так они
-  // были захардкожены здесь.
 
-  // 4. Cнизу написали логику, что должен показывать при определенном пропсе
   if (isLoading) {
     return (
       <div
@@ -54,9 +50,9 @@ export const ProfileCard = (props: ProfileCardProps) => {
       >
         <Text
           theme={TextTheme.ERROR}
-          title={t('Произошла ошибка при загрузке профиля')}
-          text={t('Попробуйте обновить страницу')}
-          align={TextAlign.LEFT}
+          title={t('error-profile')}
+          text={t('refresh-page')}
+          align={TextAlign.CENTER}
         />
       </div>
     );
@@ -65,24 +61,24 @@ export const ProfileCard = (props: ProfileCardProps) => {
   return (
     <div className={classNames(style.ProfileCard, {}, [className])}>
       <div className={style.header}>
-        <Text title={t('Профиль')} />
+        <Text title={t('profile')} />
         <Button
           className={style.editProfile}
           theme={ThemeButton.OUTLINE}
         >
-          {t('Редактировать')}
+          {t('edit')}
         </Button>
       </div>
 
       <div className={style.data}>
         <Input
           value={data?.first}
-          placeholder={t('Ваше имя')}
+          placeholder={t('name')}
           className={style.input}
         />
         <Input
           value={data?.lastname}
-          placeholder={t('Ваша фамилия')}
+          placeholder={t('surname')}
           className={style.input}
         />
       </div>

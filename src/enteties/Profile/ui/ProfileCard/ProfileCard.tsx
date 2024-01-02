@@ -12,10 +12,12 @@ interface ProfileCardProps {
   isLoading?: boolean;
   error?: string;
   readonly?: boolean;
-  onChangeFirstname: (value?: string) => void;
-  onChangeSecondname: (value?: string) => void;
-  onChangeAge: (value?: string) => void;
-  onChangeCity: (value?: string) => void;
+  onChangeFirstname?: (value?: string) => void;
+  onChangeSecondname?: (value?: string) => void;
+  onChangeAge?: (value?: string) => void;
+  onChangeCity?: (value?: string) => void;
+  onChangeUsername?: (value?: string) => void;
+  onChangeAvatar?: (value?: string) => void;
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
@@ -29,6 +31,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
     onChangeSecondname,
     onChangeAge,
     onChangeCity,
+    onChangeUsername,
+    onChangeAvatar,
   } = props;
 
   const { t } = useTranslation('profile');
@@ -69,6 +73,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
   return (
     <div className={classNames(style.ProfileCard, {}, [className])}>
       <div className={style.data}>
+        {data?.avatar && <img src={data?.avatar} /> }
         <Input
           value={data?.first}
           placeholder={t('name')}
@@ -95,6 +100,20 @@ export const ProfileCard = (props: ProfileCardProps) => {
           placeholder={t('city')}
           className={style.input}
           onChange={onChangeCity}
+          readonly={readonly}
+        />
+        <Input
+          value={data?.username}
+          placeholder={t('another-name')}
+          className={style.input}
+          onChange={onChangeUsername}
+          readonly={readonly}
+        />
+        <Input
+          value={data?.avatar}
+          placeholder={t('avatar')}
+          className={style.input}
+          onChange={onChangeAvatar}
           readonly={readonly}
         />
       </div>

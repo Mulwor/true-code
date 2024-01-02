@@ -24,12 +24,11 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
+  const dispatch = useAppDispatch();
   const formData = useSelector(getProfileForm);
   const isLoading = useSelector(getProfileIsLoading);
   const error = useSelector(getProfileError);
   const readonly = useSelector(getProfileReadonly);
-
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchProfileData());
@@ -43,6 +42,14 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     dispatch(profileActions.updateProfile({ lastname: value || '' }));
   }, [dispatch]);
 
+  const onChangeAge = useCallback((value?: string | number) => {
+    dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
+  }, [dispatch]);
+
+  const onChangeCity = useCallback((value?: string) => {
+    dispatch(profileActions.updateProfile({ city: value || '' }));
+  }, [dispatch]);
+
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <div className={classNames('', {}, [className])}>
@@ -51,9 +58,11 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
           data={formData}
           isLoading={isLoading}
           error={error}
+          readonly={readonly}
           onChangeFirstname={onChangeFirstname}
           onChangeSecondname={onChangeSecondname}
-          readonly={readonly}
+          onChangeAge={onChangeAge}
+          onChangeCity={onChangeCity}
         />
       </div>
     </DynamicModuleLoader>

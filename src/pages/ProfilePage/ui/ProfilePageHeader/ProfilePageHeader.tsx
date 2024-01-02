@@ -4,7 +4,7 @@ import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { Text } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { getProfileReadonly, profileActions } from 'enteties/Profile';
+import { getProfileReadonly, profileActions, updateProfileData } from 'enteties/Profile';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
 import style from './ProfilePageHeader.module.scss';
 
@@ -30,6 +30,10 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
     dispatch(profileActions.cancelEdit());
   }, [dispatch]);
 
+  const onSave = useCallback(() => {
+    dispatch(updateProfileData());
+  }, [dispatch]);
+
   return (
     <div className={classNames(style.ProfilePageHeader, {}, [className])}>
       <Text title={t('profile')} />
@@ -44,13 +48,22 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
           </Button>
         )
         : (
-          <Button
-            className={style.editProfile}
-            theme={ThemeButton.OUTLINE}
-            onClick={onCancelEdit}
-          >
-            {t('cancel')}
-          </Button>
+          <>
+            <Button
+              className={style.editProfile}
+              theme={ThemeButton.OUTLINE_RED}
+              onClick={onCancelEdit}
+            >
+              {t('cancel')}
+            </Button>
+            <Button
+              className={style.saveProfile}
+              theme={ThemeButton.OUTLINE}
+              onClick={onSave}
+            >
+              {t('save')}
+            </Button>
+          </>
         ) }
     </div>
   );

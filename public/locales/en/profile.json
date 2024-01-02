@@ -3,8 +3,10 @@
   "edit": "Edit",
   "name": "Name",
   "surname": "Surname",
+  "age": "Age",
+  "city": "City",
   "error-profile": "There was an error loading your profile",
   "refresh-page": "Try refreshing the page",
-  "cancel": "Cancel"
-
+  "cancel": "Cancel",
+  "save": "Save"
 }

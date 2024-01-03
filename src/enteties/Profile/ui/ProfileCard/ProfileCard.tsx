@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
-import { classNames } from 'shared/libs/classNames/classNames';
+import { Mods, classNames } from 'shared/libs/classNames/classNames';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Select } from 'shared/ui/Select/Select';
+import { Currency } from 'shared/const/common';
 import { Profile } from '../../model/types/profile';
 import style from './ProfileCard.module.scss';
 
@@ -71,8 +73,12 @@ export const ProfileCard = (props: ProfileCardProps) => {
     );
   }
 
+  const mods: Mods = {
+    [style.editing]: !readonly,
+  };
+
   return (
-    <div className={classNames(style.ProfileCard, {}, [className])}>
+    <div className={classNames(style.ProfileCard, mods, [className])}>
       <div className={style.data}>
         {data?.avatar
             && (
@@ -121,6 +127,14 @@ export const ProfileCard = (props: ProfileCardProps) => {
           className={style.input}
           onChange={onChangeAvatar}
           readonly={readonly}
+        />
+        <Select
+          label="Укажите вашу валюту"
+          options={[
+            { value: Currency.RUB, content: Currency.RUB },
+            { value: Currency.EUR, content: Currency.EUR },
+            { value: Currency.USD, content: Currency.USD },
+          ]}
         />
       </div>
     </div>

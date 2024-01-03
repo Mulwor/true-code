@@ -3,6 +3,7 @@ import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { Loader } from 'shared/ui/Loader/Loader';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Profile } from '../../model/types/profile';
 import style from './ProfileCard.module.scss';
 
@@ -73,7 +74,12 @@ export const ProfileCard = (props: ProfileCardProps) => {
   return (
     <div className={classNames(style.ProfileCard, {}, [className])}>
       <div className={style.data}>
-        {data?.avatar && <img src={data?.avatar} /> }
+        {data?.avatar
+            && (
+              <div className={style.avatarWrapper}>
+                <Avatar src={data?.avatar} />
+              </div>
+            )}
         <Input
           value={data?.first}
           placeholder={t('name')}

@@ -14,7 +14,7 @@ interface InputProps extends HTMLInputProps {
   readonly?: boolean;
 }
 
-export const Input = memo((props: InputProps) => {
+export const Input = (props: InputProps) => {
   const {
     className,
     value,
@@ -61,7 +61,7 @@ export const Input = memo((props: InputProps) => {
   };
 
   return (
-    <div className={classNames(style.InputWrapper, {}, [className])}>
+    <div className={classNames(style.InputWrapper, mods, [className])}>
       {placeholder && (
         <div className={style.placeholder}>
           {`${placeholder}>`}
@@ -87,4 +87,4 @@ export const Input = memo((props: InputProps) => {
       </div>
     </div>
   );
-});
+};

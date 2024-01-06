@@ -15,6 +15,7 @@ interface SelectProps {
   // Принимаем выбранное значение и с помощью этого мы его отразим
   value?: string;
   onChange?: (value: string) => void;
+  readonly?: boolean
 }
 
 export const Select = memo((props: SelectProps) => {
@@ -24,6 +25,7 @@ export const Select = memo((props: SelectProps) => {
     options,
     value,
     onChange,
+    readonly,
   } = props;
 
   const optionsList = useMemo(() => options?.map((opt) => (
@@ -46,7 +48,12 @@ export const Select = memo((props: SelectProps) => {
   return (
     <div className={classNames(style.Wrapper, mods, [className])}>
       {label && <span className={style.label}>{`${label}>`}</span> }
-      <select className={style.select} value={value} onChange={onChangeHandler}>
+      <select
+        className={style.select}
+        value={value}
+        onChange={onChangeHandler}
+        disabled={readonly}
+      >
         {optionsList}
       </select>
     </div>

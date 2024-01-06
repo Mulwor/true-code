@@ -8,5 +8,9 @@
   "error-profile": "There was an error loading your profile",
   "refresh-page": "Try refreshing the page",
   "cancel": "Cancel",
-  "save": "Save"
+  "save": "Save",
+  "avatar": "Your photo",
+  "another-name": "Username",
+  "currency": "Please choose your currency",
+  "country": "Please choose your country"
 }

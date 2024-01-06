@@ -5,7 +5,7 @@ import { Mods, classNames } from 'shared/libs/classNames/classNames';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Currency, CurrencySelect } from 'enteties/Currency';
-import { Country } from 'shared/const/common';
+import { Country, CountrySelect } from 'enteties/Country';
 import { Profile } from '../../model/types/profile';
 import style from './ProfileCard.module.scss';
 
@@ -132,7 +132,18 @@ export const ProfileCard = (props: ProfileCardProps) => {
           onChange={onChangeAvatar}
           readonly={readonly}
         />
-        <CurrencySelect value={data?.currency} onChange={onChangeCurrency} readonly={readonly} />
+        <CurrencySelect
+          className={style.input}
+          value={data?.currency}
+          onChange={onChangeCurrency}
+          readonly={readonly}
+        />
+        <CountrySelect
+          className={style.input}
+          value={data?.country}
+          onChange={onChangeCountry}
+          readonly={readonly}
+        />
       </div>
     </div>
   );

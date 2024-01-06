@@ -61,7 +61,7 @@ export const Input = (props: InputProps) => {
   };
 
   return (
-    <div className={classNames(style.InputWrapper, mods, [className])}>
+    <div className={classNames(style.InputWrapper, {}, [className])}>
       {placeholder && (
         <div className={style.placeholder}>
           {`${placeholder}>`}

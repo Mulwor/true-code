@@ -12,5 +12,10 @@
   "avatar": "Your photo",
   "another-name": "Username",
   "currency": "Please choose your currency",
-  "country": "Please choose your country"
+  "country": "Please choose your country",
+  "validate-user-data": "Name and surname must it",
+  "validate-age": "Incorrect age",
+  "validate-country": "Incorrect country",
+  "no-data": "Data is not written",
+  "server": "Servere error when save data"
 }

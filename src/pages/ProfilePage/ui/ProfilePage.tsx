@@ -1,5 +1,6 @@
 import {
   ProfileCard,
+  ValidateProfileError,
   fetchProfileData,
   getProfileError,
   getProfileForm,
@@ -17,6 +18,7 @@ import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch'
 import { Currency } from 'enteties/Currency';
 import { Country } from 'enteties/Country';
 import { TextTheme, Text } from 'shared/ui/Text/Text';
+import { useTranslation } from 'react-i18next';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducersList = {
@@ -28,12 +30,21 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
+  const { t } = useTranslation('profile');
   const dispatch = useAppDispatch();
   const formData = useSelector(getProfileForm);
   const isLoading = useSelector(getProfileIsLoading);
   const error = useSelector(getProfileError);
   const readonly = useSelector(getProfileReadonly);
   const validateErrors = useSelector(getProfileValidateErrors);
+
+  const validateErrorsTranslates = {
+    [ValidateProfileError.INCORRECT_USER_DATA]: t('validate-user-data'),
+    [ValidateProfileError.INCORRECT_AGE]: t('validate-age'),
+    [ValidateProfileError.INCORRECT_COUNTRY]: t('validate-country'),
+    [ValidateProfileError.NO_DATA]: t('no-data'),
+    [ValidateProfileError.SERVER_ERROR]: t('server'),
+  };
 
   useEffect(() => {
     dispatch(fetchProfileData());
@@ -79,7 +90,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
           <Text
             key={err}
             theme={TextTheme.ERROR}
-            text={err}
+            text={validateErrorsTranslates[err]}
           />
         ))}
         <ProfileCard

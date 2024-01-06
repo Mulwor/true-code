@@ -76,7 +76,11 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
       <div className={classNames('', {}, [className])}>
         <ProfilePageHeader />
         {validateErrors?.length && validateErrors.map((err) => (
-          <Text theme={TextTheme.ERROR} text={err} />
+          <Text
+            key={err}
+            theme={TextTheme.ERROR}
+            text={err}
+          />
         ))}
         <ProfileCard
           data={formData}

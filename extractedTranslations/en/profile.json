@@ -4,11 +4,18 @@
   "avatar": "",
   "cancel": "",
   "city": "",
+  "country": "",
+  "currency": "",
   "edit": "",
   "error-profile": "",
   "name": "",
+  "no-data": "",
   "profile": "",
   "refresh-page": "",
   "save": "",
-  "surname": ""
+  "server": "",
+  "surname": "",
+  "validate-age": "",
+  "validate-country": "",
+  "validate-user-data": ""
 }

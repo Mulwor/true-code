@@ -10,10 +10,13 @@ import {
   getArticleDetailsError,
   getArticleDetailsIsLoading,
 } from 'enteties/Article/model/selectors/articleDetails';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleleton/Skeleton';
-import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
+import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
 import style from './ArticleDetails.module.scss';
+import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 
 interface ArticleDetailsProps {
   className?: string;
@@ -28,22 +31,21 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
   const { className, id } = props;
   const { t } = useTranslation('article');
   const dispatch = useAppDispatch();
-  const data = useSelector(getArticleDetailsData);
-  // const isLoading = useSelector(getArticleDetailsIsLoading);
-  const isLoading = true;
+  const article = useSelector(getArticleDetailsData);
+  const isLoading = useSelector(getArticleDetailsIsLoading);
   const error = useSelector(getArticleDetailsError);
 
   let content;
 
   if (isLoading) {
     content = (
-      <div>
+      <>
         <Skeleton className={style.avatar} width={200} height={200} border="50%" />
         <Skeleton className={style.title} width={300} height={32} />
         <Skeleton className={style.skeleton} width={600} height={24} />
         <Skeleton className={style.skeleton} width="100%" height={200} />
         <Skeleton className={style.skeleton} width="100%" height={200} />
-      </div>
+      </>
     );
   } else if (error) {
     content = (
@@ -54,7 +56,30 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     );
   } else {
     content = (
-      <div>{t('Article Details')}</div>
+      <>
+        <div className={style.avatarWrapper}>
+          <Avatar
+            size={200}
+            src={article?.img}
+            className={style.avatar}
+          />
+        </div>
+        <Text
+          className={style.title}
+          size={TextSize.L}
+          title={article?.title}
+          text={article?.subtitle}
+        />
+        <div className={style.articleInfo}>
+          <EyeIcon className={style.icon} />
+          <Text text={String(article?.views)} />
+        </div>
+
+        <div className={style.articleInfo}>
+          <CalendarIcon className={style.icon} />
+          <Text text={article?.createdAt} />
+        </div>
+      </>
     );
   }
 

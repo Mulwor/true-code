@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { memo } from 'react';
 import { ArticleImageBlock } from 'enteties/Article/model/types/article';
+import { TextAlign, Text } from 'shared/ui/Text/Text';
 import style from './ArticleImageBlockComponent.module.scss';
 
 interface ArticleImageBlockComponentProps {
@@ -14,9 +15,11 @@ export const ArticleImageBlockComponent = memo((props: ArticleImageBlockComponen
   const { t } = useTranslation('article');
 
   return (
-    // eslint-disable-next-line i18next/no-literal-string
     <div className={classNames(style.ArticleImageBlockComponent, {}, [className])}>
-      Article Image Block Component
+      <img src={block.src} className={style.img} alt={block.title} />
+      {block.title && (
+        <Text text={block.title} align={TextAlign.CENTER} />
+      )}
     </div>
   );
 });

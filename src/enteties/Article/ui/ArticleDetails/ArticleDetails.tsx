@@ -3,7 +3,7 @@ import { classNames } from 'shared/libs/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { fetchArticleById } from 'enteties/Article/model/services/fetchArticleById/fetchArticleById';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
   getArticleDetailsData,
@@ -16,8 +16,12 @@ import { Avatar } from 'shared/ui/Avatar/Avatar';
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
 import { Icon } from 'shared/ui/Icon/Icon';
+import { ArticleBlock, ArticleBlockType } from 'enteties/Article/model/types/article';
 import style from './ArticleDetails.module.scss';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
 interface ArticleDetailsProps {
   className?: string;
@@ -35,6 +39,24 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
   const article = useSelector(getArticleDetailsData);
   const isLoading = useSelector(getArticleDetailsIsLoading);
   const error = useSelector(getArticleDetailsError);
+
+  const renderBlock = useCallback((block: ArticleBlock) => {
+    switch (block.type) {
+    case ArticleBlockType.CODE:
+      return <ArticleCodeBlockComponent className={style.block} />;
+    case ArticleBlockType.IMAGE:
+      return <ArticleImageBlockComponent className={style.block} />;
+    case ArticleBlockType.TEXT:
+      return (
+        <ArticleTextBlockComponent
+          className={style.block}
+          block={block}
+        />
+      );
+    default:
+      return null;
+    }
+  }, []);
 
   let content;
 
@@ -80,6 +102,8 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
           <Icon Svg={CalendarIcon} className={style.icon} />
           <Text text={article?.createdAt} />
         </div>
+
+        {article?.blocks.map(renderBlock)}
       </>
     );
   }

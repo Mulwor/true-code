@@ -17,7 +17,7 @@ export const ArticleCodeBlockComponent = memo((props: ArticleCodeBlockComponentP
   return (
     // eslint-disable-next-line i18next/no-literal-string
     <div className={classNames(style.ArticleCodeBlockComponent, {}, [className])}>
-      <Code>{block.code}</Code>
+      <Code text={block.code} />
     </div>
   );
 });

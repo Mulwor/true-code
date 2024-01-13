@@ -5,12 +5,12 @@ import { Text } from 'shared/ui/Text/Text';
 import { ArticleTextBlock } from '../../model/types/article';
 import style from './ArticleTextBlockComponent.module.scss';
 
-interface ArticleCodeBlockComponentProps {
+interface ArticleTextBlockComponentProps {
   className?: string;
   block: ArticleTextBlock;
 }
 
-export const ArticleTextBlockComponent = memo((props: ArticleCodeBlockComponentProps) => {
+export const ArticleTextBlockComponent = memo((props: ArticleTextBlockComponentProps) => {
   const { className, block } = props;
   const { t } = useTranslation('article');
 

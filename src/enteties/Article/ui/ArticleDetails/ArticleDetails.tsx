@@ -15,6 +15,7 @@ import { Skeleton } from 'shared/ui/Skeleleton/Skeleton';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
+import { Icon } from 'shared/ui/Icon/Icon';
 import style from './ArticleDetails.module.scss';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 
@@ -71,12 +72,12 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
           text={article?.subtitle}
         />
         <div className={style.articleInfo}>
-          <EyeIcon className={style.icon} />
+          <Icon Svg={EyeIcon} className={style.icon} />
           <Text text={String(article?.views)} />
         </div>
 
         <div className={style.articleInfo}>
-          <CalendarIcon className={style.icon} />
+          <Icon Svg={CalendarIcon} className={style.icon} />
           <Text text={article?.createdAt} />
         </div>
       </>

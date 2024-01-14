@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { ArticleDetails } from 'enteties/Article';
 import { useParams } from 'react-router-dom';
-import style from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
   className?: string;
@@ -21,7 +20,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   }
 
   return (
-    <div className={classNames(style.ArticleDetailsPage, {}, [className])}>
+    <div className={classNames('', {}, [className])}>
       <ArticleDetails id={id} />
     </div>
   );

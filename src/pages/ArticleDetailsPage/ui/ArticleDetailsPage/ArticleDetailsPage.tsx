@@ -30,7 +30,11 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
         {
           id: '1',
           text: 'commen1',
-          user: { id: '1', username: 'Valera' },
+          user: {
+            id: '1',
+            username: 'Valera',
+            avatar: 'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
+          },
         },
         {
           id: '2',

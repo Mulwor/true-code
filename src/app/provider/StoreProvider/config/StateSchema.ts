@@ -21,6 +21,7 @@ export interface StateShema {
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
   articleDetails?: ArticleDetailsSchema;
+  articleDetailsComment?: ArticleDetailsSchema;
 }
 
 export type StateSchemaKey = keyof StateShema;

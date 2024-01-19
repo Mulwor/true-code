@@ -4,7 +4,12 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended', 'plugin:storybook/recommended'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:i18next/recommended',
+    'plugin:storybook/recommended',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -43,6 +48,7 @@ module.exports = {
     }],
     'max-len': ['error', { ignoreComments: true, code: 120 }],
     'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/alt-text': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
@@ -52,6 +58,7 @@ module.exports = {
   globals: {
     __IS_DEV__: true,
     __API__: true,
+    __PROJECT__: true,
   },
   // Для определенного типа файлов переобпределить какие-то правила.
   // В данном случае в тестах он игнорирует i18n

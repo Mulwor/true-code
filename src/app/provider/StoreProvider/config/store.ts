@@ -30,11 +30,6 @@ export function createReduxStore(
     reducer: reducerManager.reduce as Reducer<CombinedState<StateShema>>,
     devTools: __IS_DEV__,
     preloadedState: initialState,
-    // Мидлвары (middlewares) — это функции, которые последовательно
-    // вызываются во время обновления данных в хранилище.
-    // Сначала мидлвары встраиваются в хранилище при его создании
-    // Затем начинается отправка действий (диспатчинга)
-    // В этот момент данные проходят через мидлвары и затем попадают в редьюсер
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       thunk: {
         extraArgument: extraArg,
@@ -48,6 +43,4 @@ export function createReduxStore(
   return store;
 }
 
-// Берем typeof от функции, и мы получаем тип того, что это функция
-// должна вернуть
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']

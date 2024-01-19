@@ -13,13 +13,9 @@ export const loginSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    // Редьюсер на изменения имени
-    // PayloadAction - c помощью него можем определить, что
-    // мы ожидаем внутри экшена
     setUsername: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
     },
-    // Редьюсер на изменения пароля
     setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },

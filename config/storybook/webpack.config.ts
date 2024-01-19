@@ -14,8 +14,6 @@ export default ({ config }: {config: webpack.Configuration}) => {
   config!.resolve!.modules!.push(paths.src);
   config!.resolve!.extensions!.push('.ts', '.tsx');
 
-  // Мы находим правила, которая обрабатывает свг, и если мы нашли данное правило,
-  // то берем и исключае данное правило
   // eslint-disable-next-line no-param-reassign
   // @ts-ignore
   config!.module!.rules = config!.module!.rules!.map((rule: RuleSetRule) => {
@@ -25,7 +23,6 @@ export default ({ config }: {config: webpack.Configuration}) => {
     return rule;
   });
 
-  // Восклицаетльный знак передают ТС, что поле у нас точно не undefined
   config!.module!.rules.push({
     test: /\.svg$/,
     use: ['@svgr/webpack'],
@@ -36,6 +33,7 @@ export default ({ config }: {config: webpack.Configuration}) => {
   config!.plugins!.push(new DefinePlugin({
     __IS_DEV__: JSON.stringify(true),
     __API__: JSON.stringify(''),
+    __PROJECT__: JSON.stringify('storybook'),
   }));
 
   return config;

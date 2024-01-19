@@ -1,20 +1,26 @@
 import {
-  AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject,
+  AnyAction,
+  CombinedState,
+  EnhancedStore,
+  Reducer,
+  ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
+import { ArticleDetailsSchema } from 'enteties/Article';
 import { CounterScheme } from 'enteties/Counter';
 import { ProfileSchema } from 'enteties/Profile';
 import { UserSchema } from 'enteties/User';
 import { LoginSchema } from 'features/AuthByUsername';
+import { ArticleDetailCommentsShema } from 'pages/ArticleDetailsPage';
 import { To, NavigateOptions } from 'react-router-dom';
 
 export interface StateShema {
   counter: CounterScheme;
   user: UserSchema;
-
-  // Асинхронные редюсеры
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
+  articleDetails?: ArticleDetailsSchema;
+  articleDetailsComments?: ArticleDetailCommentsShema;
 }
 
 export type StateSchemaKey = keyof StateShema;
@@ -36,6 +42,7 @@ export interface ThunkExtraArg {
 }
 
 export interface ThunkConfig<T> {
-  rejectValue: T,
-  extra: ThunkExtraArg,
+  rejectValue: T;
+  extra: ThunkExtraArg;
+  state: StateShema;
 }

@@ -6,8 +6,10 @@ import { useParams } from 'react-router-dom';
 import { Text } from 'shared/ui/Text/Text';
 import { CommentList } from 'enteties/Comment';
 import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getArticleCommentsIsLoading } from 'pages/ArticleDetailsPage/model/selectors/comments';
+import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialEffect';
+import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { articleDetailsCommentsReducer, getArticleComments } from '../../model/slices/articleDetailsCommentsSlice';
 import style from './ArticleDetalisPage.module.scss';
 
@@ -16,15 +18,20 @@ interface ArticleDetailsPageProps {
 }
 
 const reducers: ReducersList = {
-  articleDetailsComment: articleDetailsCommentsReducer,
+  articleDetailsComments: articleDetailsCommentsReducer,
 };
 
 const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   const { className } = props;
   const { t } = useTranslation('article');
   const { id } = useParams<{id:string}>();
+  const dispatch = useDispatch();
   const comments = useSelector(getArticleComments.selectAll);
   const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+
+  useInitialEffect(() => {
+    dispatch(fetchCommentsByArticleId(id));
+  });
 
   if (!id) {
     return (

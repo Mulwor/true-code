@@ -20,7 +20,7 @@ export interface StateShema {
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
   articleDetails?: ArticleDetailsSchema;
-  articleDetailsComment?: ArticleDetailCommentsShema;
+  articleDetailsComments?: ArticleDetailCommentsShema;
 }
 
 export type StateSchemaKey = keyof StateShema;

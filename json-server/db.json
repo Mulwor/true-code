@@ -98,6 +98,18 @@
       "password": "123",
       "role": "USER",
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
+    },
+    {
+      "article": "1",
+      "userId": "1",
+      "text": "sad",
+      "id": "0XUfbZl"
+    },
+    {
+      "article": "1",
+      "userId": "1",
+      "text": "sadness",
+      "id": "ZUNicqq"
     }
   ],
   "users": [

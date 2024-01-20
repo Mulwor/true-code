@@ -114,14 +114,28 @@
       "role": "USER"
     }
   ],
-  "profile": {
-    "first": "Али",
-    "lastname": "Адыгезалли",
-    "age": 26,
-    "currency": "USD",
-    "country": "Russia",
-    "city": "Saint-Petersburg",
-    "username": "admin",
-    "avatar": "https://cdn.azbyka.ru/recept/wp-content/uploads/2023/01/world-smile-day-emojis-arrangement.jpg"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "Али",
+      "lastname": "Адыгезалли",
+      "age": 26,
+      "currency": "USD",
+      "country": "Russia",
+      "city": "Saint-Petersburg",
+      "username": "admin",
+      "avatar": "https://cdn.azbyka.ru/recept/wp-content/uploads/2023/01/world-smile-day-emojis-arrangement.jpg"
+    },
+    {
+      "id": "2",
+      "first": "Иванов",
+      "lastname": "Иван",
+      "age": 22,
+      "currency": "USD",
+      "country": "Russia",
+      "city": "Saint-Petersburg",
+      "username": "virtuality",
+      "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
+    }
+  ]
 }

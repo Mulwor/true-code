@@ -3,22 +3,20 @@ import { ThunkConfig } from 'app/provider/StoreProvider';
 import { Comment } from 'enteties/Comment';
 import { getUserAuthData } from 'enteties/User';
 import { getArticleDetailsData } from 'enteties/Article/model/selectors/articleDetails';
-import { getAddCommentFormText } from '../../selectors/addCommentFormSelectors';
+import { fetchCommentsByArticleId } from '../fetchCommentsByArticleId/fetchCommentsByArticleId';
 
-export const sendComment = createAsyncThunk<
+export const addCommentForArticle = createAsyncThunk<
     Comment,
-    void,
+    string,
     ThunkConfig<string>
     >(
-      'addCommentForm/sendComment',
-      async (authData, thunkApi) => {
+      'articleDetails/addCommentForArticle',
+      async (text, thunkApi) => {
         const {
-          extra, rejectWithValue, getState,
+          extra, rejectWithValue, getState, dispatch,
         } = thunkApi;
 
         const userData = getUserAuthData(getState());
-        // Нужен для того, чтобы достать текст - содержимое инпута
-        const text = getAddCommentFormText(getState());
         // Нужен для получения статьи
         const article = getArticleDetailsData(getState());
 
@@ -36,6 +34,9 @@ export const sendComment = createAsyncThunk<
           if (!response.data) {
             throw new Error();
           }
+
+          // После того как нажали на enter, комментарий удаляетсz
+          dispatch(fetchCommentsByArticleId(article.id));
 
           return response.data;
         } catch (e) {

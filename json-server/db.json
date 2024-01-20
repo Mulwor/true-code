@@ -87,6 +87,20 @@
   "comments": [
     {
       "id": "1",
+      "text": "some comment",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "text": "some comment 2",
+      "articleId": "1",
+      "userId": "1"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
       "username": "admin",
       "password": "123",
       "role": "ADMIN",
@@ -98,55 +112,29 @@
       "password": "123",
       "role": "USER",
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
-    },
-    {
-      "article": "1",
-      "userId": "1",
-      "text": "sad",
-      "id": "0XUfbZl"
-    },
-    {
-      "article": "1",
-      "userId": "1",
-      "text": "sadness",
-      "id": "ZUNicqq"
-    }
-  ],
-  "users": [
-    {
-      "id": "1",
-      "username": "admin",
-      "password": "123",
-      "role": "ADMIN"
-    },
-    {
-      "id": "2",
-      "username": "user",
-      "password": "123",
-      "role": "USER"
     }
   ],
   "profile": [
     {
       "id": "1",
-      "first": "Али",
-      "lastname": "Адыгезалли",
-      "age": 26,
-      "currency": "USD",
-      "country": "Russia",
-      "city": "Saint-Petersburg",
-      "username": "admin",
-      "avatar": "https://cdn.azbyka.ru/recept/wp-content/uploads/2023/01/world-smile-day-emojis-arrangement.jpg"
+      "first": "jgh",
+      "lastname": "asf",
+      "age": 465,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin213",
+      "avatar": "https://avatars.mds.yandex.net/get-zen_doc/3413519/pub_5ff887b2fe4e686f6ae6ba3f_5ff887d7f906b16872a69755/scale_1200"
     },
     {
       "id": "2",
-      "first": "Иванов",
-      "lastname": "Иван",
-      "age": 22,
-      "currency": "USD",
+      "first": "ulbi tv",
+      "lastname": "asf",
+      "age": 465,
+      "currency": "RUB",
       "country": "Russia",
-      "city": "Saint-Petersburg",
-      "username": "virtuality",
+      "city": "Moscow",
+      "username": "ulbi tv",
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
     }
   ]

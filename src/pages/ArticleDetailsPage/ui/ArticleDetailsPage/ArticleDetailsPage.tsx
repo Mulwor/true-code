@@ -48,7 +48,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   }
 
   return (
-    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+    <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(style.ArticleDetailsPage, {}, [className])}>
         <ArticleDetails id={id} />
         <Text className={style.commentTitle} title={t('Комментарии')} />

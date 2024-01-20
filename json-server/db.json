@@ -87,15 +87,33 @@
   "comments": [
     {
       "id": "1",
-      "text": "some comment",
+      "text": "Необходимо изучить: createAsyncThunk, middleware, reducers/extraReducers",
       "articleId": "1",
       "userId": "1"
     },
     {
       "id": "2",
-      "text": "some comment 2",
+      "text": "Следующие темы для изучения",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "article": "1",
+      "userId": "1",
+      "text": "sad",
+      "id": "zoSznk9"
+    },
+    {
+      "article": "1",
+      "userId": "1",
+      "text": "sad",
+      "id": "nyMVBES"
+    },
+    {
+      "article": "1",
+      "userId": "1",
+      "text": "check",
+      "id": "m02J-G5"
     }
   ],
   "users": [

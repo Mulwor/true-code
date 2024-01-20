@@ -3,7 +3,7 @@ import { ThunkConfig } from 'app/provider/StoreProvider';
 import { Comment } from 'enteties/Comment';
 import { getUserAuthData } from 'enteties/User';
 import { getArticleDetailsData } from 'enteties/Article/model/selectors/articleDetails';
-import { fetchCommentsByArticleId } from '../fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { fetchCommentsByArticleId } from '../../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
 export const addCommentForArticle = createAsyncThunk<
     Comment,
@@ -17,7 +17,6 @@ export const addCommentForArticle = createAsyncThunk<
         } = thunkApi;
 
         const userData = getUserAuthData(getState());
-        // Нужен для получения статьи
         const article = getArticleDetailsData(getState());
 
         if (!userData || !text || !article) {
@@ -35,7 +34,7 @@ export const addCommentForArticle = createAsyncThunk<
             throw new Error();
           }
 
-          // После того как нажали на enter, комментарий удаляетсz
+          // После того как нажали на enter, комментарий удаляется
           dispatch(fetchCommentsByArticleId(article.id));
 
           return response.data;

@@ -1,3 +1,5 @@
+import { User } from 'enteties/User';
+
 // db-json - articles - blocks - type
 export enum ArticleBlockType {
   CODE = 'CODE',
@@ -54,6 +56,7 @@ export interface Article {
   id: string;
   title: string;
   subtitle: string;
+  user: User;
   img: string;
   views: number;
   createdAt: string;

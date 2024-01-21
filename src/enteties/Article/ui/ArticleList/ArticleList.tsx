@@ -31,7 +31,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
   );
 
   return (
-    <div className={classNames(style.ArticleList, {}, [className])}>
+    <div className={classNames(style.ArticleList, {}, [className, style[view]])}>
       { articles.length > 0
         ? articles.map(renderArticle)
         : null}

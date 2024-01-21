@@ -2,7 +2,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/libs/classNames/classNames';
-import { Article, ArticleList } from 'enteties/Article';
+import { Article, ArticleList, ArticleView } from 'enteties/Article';
 import style from './ArticlePage.module.scss';
 
 interface ArticlePageProps {
@@ -16,6 +16,11 @@ const article = {
   img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
   views: 1022,
   createdAt: '26.02.2022',
+  user: {
+    id: '1',
+    username: 'Ulbi tv',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-WOCNgDGLOHh2Injvpoy840DrELfK1AeWvg&usqp=CAU',
+  },
   type: [
     'IT',
   ],
@@ -39,15 +44,16 @@ const ArticlePage = (props: ArticlePageProps) => {
 
   return (
     <div className={classNames(style.ArticlePage, {}, [className])}>
-      <ArticleList articles={
-        new Array(16)
-          // Данная метод заполняет массив каким-то элементом
-          .fill(0)
-          .map((item, index) => ({
-            ...article,
-            id: String(index),
-          }))
-      }
+      <ArticleList
+        view={ArticleView.BIG}
+        articles={
+          new Array(16)
+            .fill(0)
+            .map((item, index) => ({
+              ...article,
+              id: String(index),
+            }))
+        }
       />
     </div>
   );

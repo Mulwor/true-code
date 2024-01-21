@@ -1,20 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import { action } from '@storybook/addon-actions';
 import AddCommentForm from './AddCommentForm';
 
 const meta = {
-  title: 'shared/AddCommentForm',
+  title: 'features/AddCommentForm',
   component: AddCommentForm,
-  tags: ['autodocs'],
-  args: {},
 } satisfies Meta<typeof AddCommentForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Example1: Story = {
-  args: {},
+export const Example: Story = {
+  args: {
+    onSendComment: action('onSendComment'),
+  },
 };
-
-export const Example2: Story = {
-  args: {},
-};
+Example.decorators = [
+  StoreDecorator({}),
+];

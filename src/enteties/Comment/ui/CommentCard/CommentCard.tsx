@@ -10,12 +10,16 @@ import { Comment } from '../../model/types/comment';
 
 interface CommentCardProps {
   className?: string;
-  comment: Comment;
+  comment?: Comment;
   isLoading?: boolean;
 }
 
 export const CommentCard = memo((props:CommentCardProps) => {
   const { className, comment, isLoading } = props;
+
+  if (!comment) {
+    return null;
+  }
 
   if (isLoading) {
     return (

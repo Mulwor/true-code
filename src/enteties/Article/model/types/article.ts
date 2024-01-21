@@ -44,6 +44,12 @@ export enum ArticleType {
   ECONOMICS = 'ECONOMICS'
 }
 
+// Enum для отображения в виде списка либо в виде плитки
+export enum ArticleView {
+  BIG = 'BIG',
+  SMALL = 'SMALL'
+}
+
 export interface Article {
   id: string;
   title: string;

@@ -108,6 +108,12 @@
       "userId": "2",
       "text": "sad",
       "id": "ej1dS_-"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "Sadness",
+      "id": "awdSX0y"
     }
   ],
   "users": [
@@ -140,7 +146,7 @@
     },
     {
       "id": "2",
-      "first": "Ilya",
+      "first": "Ilyas",
       "lastname": "Valeryanovic",
       "age": 21,
       "currency": "RUB",

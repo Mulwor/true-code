@@ -12,6 +12,7 @@ const data = {
   city: 'Saint-Petersburg',
   first: 'Ali',
   currency: Currency.USD,
+  id: '1',
 };
 
 describe('Тесты для updateProfileData', () => {

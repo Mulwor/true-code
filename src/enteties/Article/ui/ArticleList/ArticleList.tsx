@@ -27,6 +27,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
       article={article}
       view={view}
       className={style.card}
+      key={article.id}
     />
   );
 

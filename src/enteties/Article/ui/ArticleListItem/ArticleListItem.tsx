@@ -7,16 +7,19 @@ import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import { Card } from 'shared/ui/Card/Card';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import { Article, ArticleView } from '../../model/types/article';
+import {
+  Article, ArticleBlockType, ArticleTextBlock, ArticleView,
+} from '../../model/types/article';
 import style from './ArticleListItem.module.scss';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
-interface ArticleListItemsProps {
+interface ArticleListItemProps {
   className?: string;
   article: Article;
   view: ArticleView
 }
 
-export const ArticleListItem = memo((props: ArticleListItemsProps) => {
+export const ArticleListItem = memo((props: ArticleListItemProps) => {
   const { className, article, view } = props;
   const { t } = useTranslation('article');
 
@@ -29,6 +32,10 @@ export const ArticleListItem = memo((props: ArticleListItemsProps) => {
   );
 
   if (view === ArticleView.BIG) {
+    const textBlock = article.blocks.find(
+      (block) => block.type === ArticleBlockType.TEXT,
+    ) as ArticleTextBlock;
+
     return (
       <div className={classNames(style.ArticleListItem, {}, [className, style[view]])}>
         <Card className={style.card}>
@@ -40,6 +47,10 @@ export const ArticleListItem = memo((props: ArticleListItemsProps) => {
           <Text title={article.title} className={style.title} />
           {types}
           <img src={article.img} className={style.img} alt={article.title} />
+          {textBlock && (
+            <ArticleTextBlockComponent block={textBlock} className={style.textBlock} />
+          )}
+
           <div className={style.footer}>
             <Button theme={ThemeButton.OUTLINE}>
               {t('Читать далее...')}

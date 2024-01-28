@@ -4,6 +4,7 @@ import { memo } from 'react';
 import style from './ArticleList.module.scss';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
+import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 
 interface ArticleListProps {
   className?: string;
@@ -13,6 +14,12 @@ interface ArticleListProps {
   view?: ArticleView
 }
 
+const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.SMALL ? 9 : 3)
+  .fill(0)
+  .map((item, index) => (
+    <ArticleListItemSkeleton className={style.card} key={index} view={view} />
+  ));
+
 export const ArticleList = memo((props: ArticleListProps) => {
   const {
     className,
@@ -21,6 +28,14 @@ export const ArticleList = memo((props: ArticleListProps) => {
     view = ArticleView.SMALL,
   } = props;
   const { t } = useTranslation('article');
+
+  if (isLoading) {
+    return (
+      <div className={classNames(style.ArticleList, {}, [className, style[view]])}>
+        {getSkeletons(view)}
+      </div>
+    );
+  }
 
   const renderArticle = (article: Article) => (
     <ArticleListItem

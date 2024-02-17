@@ -1,7 +1,7 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/libs/classNames/classNames';
-import { ArticleList, ArticleView } from 'enteties/Article';
+import { ArticleList, ArticleView, ArticleViewSelector } from 'enteties/Article';
 import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialEffect';
@@ -12,7 +12,7 @@ import {
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from '../../model/selectors/articlePageSelectors';
-import { articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice';
+import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice';
 import style from './ArticlePage.module.scss';
 
 interface ArticlePageProps {
@@ -36,12 +36,17 @@ const ArticlePage = (props: ArticlePageProps) => {
     dispatch(fetchArticlesList());
   });
 
+  const onChangeView = useCallback((view: ArticleView) => {
+    dispatch(articlesPageActions.setView(view));
+  }, [dispatch]);
+
   return (
     <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(style.ArticlePage, {}, [className])}>
+        <ArticleViewSelector view={view} onViewClick={onChangeView} />
         <ArticleList
           isLoading={isLoading}
-          view={ArticleView.BIG}
+          view={view}
           articles={articles}
         />
       </div>

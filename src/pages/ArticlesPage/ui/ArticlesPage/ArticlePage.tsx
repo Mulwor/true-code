@@ -34,6 +34,7 @@ const ArticlePage = (props: ArticlePageProps) => {
 
   useInitialEffect(() => {
     dispatch(fetchArticlesList());
+    dispatch(articlesPageActions.initState());
   });
 
   const onChangeView = useCallback((view: ArticleView) => {

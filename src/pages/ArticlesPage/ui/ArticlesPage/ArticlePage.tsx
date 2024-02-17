@@ -6,13 +6,13 @@ import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/Dynami
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialEffect';
 import { useSelector } from 'react-redux';
-import { fetchArticlesList } from '../../model/services/fetchArticleList/fetchArticleList';
+import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import {
   getArticlesPageError,
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from '../../model/selectors/articlePageSelectors';
-import { articlesPageReducer, getArticle } from '../../model/slices/articlePageSlice';
+import { articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice';
 import style from './ArticlePage.module.scss';
 
 interface ArticlePageProps {
@@ -27,7 +27,7 @@ const ArticlePage = (props: ArticlePageProps) => {
   const { className } = props;
   const { t } = useTranslation('article');
   const dispatch = useAppDispatch();
-  const articles = useSelector(getArticle.selectAll);
+  const articles = useSelector(getArticles.selectAll);
   const isLoading = useSelector(getArticlesPageIsLoading);
   const error = useSelector(getArticlesPageError);
   const view = useSelector(getArticlesPageView);
@@ -41,7 +41,7 @@ const ArticlePage = (props: ArticlePageProps) => {
       <div className={classNames(style.ArticlePage, {}, [className])}>
         <ArticleList
           isLoading={isLoading}
-          view={view}
+          view={ArticleView.BIG}
           articles={articles}
         />
       </div>

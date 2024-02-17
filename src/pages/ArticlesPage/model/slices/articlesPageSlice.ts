@@ -1,19 +1,19 @@
 import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { StateShema } from 'app/provider/StoreProvider';
 import { Article, ArticleView } from 'enteties/Article';
-import { ArticlesPageSchema } from '../types/articlePageSchema';
-import { fetchArticlesList } from '../services/fetchArticleList/fetchArticleList';
+import { ArticlesPageSchema } from 'pages/ArticlesPage';
+import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
 
 const articlesAdapter = createEntityAdapter<Article>({
   selectId: (article) => article.id,
 });
 
-export const getArticle = articlesAdapter.getSelectors<StateShema>(
+export const getArticles = articlesAdapter.getSelectors<StateShema>(
   (state) => state.articlesPage || articlesAdapter.getInitialState(),
 );
 
 const articlesPageSlice = createSlice({
-  name: 'articlePageSlice',
+  name: 'articlesPageSlice',
   initialState: articlesAdapter.getInitialState<ArticlesPageSchema>({
     isLoading: false,
     error: undefined,

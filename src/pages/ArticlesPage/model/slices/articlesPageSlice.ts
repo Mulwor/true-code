@@ -50,7 +50,10 @@ const articlesPageSlice = createSlice({
         action: PayloadAction<Article[]>,
       ) => {
         state.isLoading = false;
-        articlesAdapter.setAll(state, action.payload);
+        articlesAdapter.addMany(state, action.payload);
+        // Если у нас есть хотя бы 1 элемент в массив, то мы считаем,
+        // что на сервере еще данные есть
+        state.hasMore = action.payload.length > 0;
       })
       .addCase(fetchArticlesList.rejected, (state, action) => {
         state.isLoading = false;

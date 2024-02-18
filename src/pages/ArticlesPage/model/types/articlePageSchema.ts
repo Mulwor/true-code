@@ -11,4 +11,6 @@ export interface ArticlesPageSchema extends EntityState<Article>{
   page: number; // номер страницы
   limit?: number; // сколько статьей будет отображаться
   hasMore: boolean; // Загрузили мы все статьи или есть еще какие-то статьи, которые должны подгрузить
+
+  _inited: boolean
 }

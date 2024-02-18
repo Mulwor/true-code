@@ -11,6 +11,7 @@ import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialE
 import { AddCommentForm } from 'features/addCommentsForm';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Page } from 'shared/ui/Page/Page';
 import {
   addCommentForArticle,
 } from '../../model/services/addCommentForArticle/addCommentForArticle';
@@ -50,13 +51,13 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
   if (!id) {
     return (
-      <div>{t('Статья не найдена')}</div>
+      <Page>{t('Статья не найдена')}</Page>
     );
   }
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames(style.ArticleDetailsPage, {}, [className])}>
+      <Page className={classNames(style.ArticleDetailsPage, {}, [className])}>
         <Button theme={ThemeButton.OUTLINE} onClick={onBackToList}>
           {t('Назад к списку')}
         </Button>
@@ -67,7 +68,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
           isLoading={commentsIsLoading}
           comments={comments}
         />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 };

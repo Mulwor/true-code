@@ -17,6 +17,7 @@ import {
 } from '../../model/selectors/articlePageSelectors';
 import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice';
 import style from './ArticlePage.module.scss';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 
 interface ArticlePageProps {
   className?: string;
@@ -28,26 +29,16 @@ const reducers: ReducersList = {
 
 const ArticlePage = (props: ArticlePageProps) => {
   const { className } = props;
-  const { t } = useTranslation('article');
   const dispatch = useAppDispatch();
   const articles = useSelector(getArticles.selectAll);
   const isLoading = useSelector(getArticlesPageIsLoading);
-  const error = useSelector(getArticlesPageError);
   const view = useSelector(getArticlesPageView);
-  const page = useSelector(getArticlesPageNumber);
-  const hasMore = useSelector(getArticlesPageHasMore);
 
   // Загрузка новых порций данных, если мы были на первой странице, то мы
   // подгружаем вторую и т.д.
   const onLoadNextPart = useCallback(() => {
-    // Чтобы запрос не отправлялся в момент загрузки данных
-    if (hasMore && !isLoading) {
-      dispatch(articlesPageActions.setPage(page + 1));
-      dispatch(fetchArticlesList({
-        page: page + 1,
-      }));
-    }
-  }, [dispatch, page, hasMore, isLoading]);
+    dispatch(fetchNextArticlesPage());
+  }, [dispatch]);
 
   useInitialEffect(() => {
     dispatch(articlesPageActions.initState());

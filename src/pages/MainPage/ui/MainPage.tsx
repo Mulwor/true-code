@@ -3,7 +3,7 @@ import { Counter } from 'enteties/Counter';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from 'shared/ui/Input/Input';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widget/Page/Page';
 
 function MainPage() {
   const { t } = useTranslation();

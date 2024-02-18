@@ -11,7 +11,7 @@ import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialE
 import { AddCommentForm } from 'features/addCommentsForm';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widget/Page/Page';
 import {
   addCommentForArticle,
 } from '../../model/services/addCommentForArticle/addCommentForArticle';

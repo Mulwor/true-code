@@ -1,5 +1,15 @@
 import { User } from 'enteties/User';
 
+// Сортировать будем по трем пункта
+export enum ArticleSortField {
+  // По просмотрам
+  VIEWS = 'views',
+  // По заголовка
+  TITLE = 'title',
+  // И по дате создания
+  CREATED = 'createdAt',
+}
+
 // db-json - articles - blocks - type
 export enum ArticleBlockType {
   CODE = 'CODE',

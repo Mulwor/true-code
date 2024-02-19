@@ -1,15 +1,23 @@
-import { getArticlesPageView } from 'pages/ArticlesPage/model/selectors/articlePageSelectors';
-import { articlesPageActions } from 'pages/ArticlesPage/model/slices/articlesPageSlice';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
-import { ArticleView, ArticleViewSelector } from 'enteties/Article';
+import {
+  ArticleSortField, ArticleSortSelector, ArticleView, ArticleViewSelector,
+} from 'enteties/Article';
 import { useTranslation } from 'react-i18next';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
-import { ArticleSortSelector } from 'enteties/Article/ui/ArticleSortSelector/ArticleSortSelector';
+import { SortOrder } from 'shared/types';
+import { articlesPageActions } from '../../model/slices/articlesPageSlice';
+import {
+  getArticlesPageOrder,
+  getArticlesPageSearch,
+  getArticlesPageSort,
+  getArticlesPageView,
+} from '../../model/selectors/articlePageSelectors';
 import style from './ArticlePageFilters.module.scss';
+import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 
 interface ArticlePageProps {
   className?: string;
@@ -20,19 +28,56 @@ export const ArticlesPageFilters = memo((props: ArticlePageProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const view = useSelector(getArticlesPageView);
+  const sort = useSelector(getArticlesPageSort);
+  const order = useSelector(getArticlesPageOrder);
+  const search = useSelector(getArticlesPageSearch);
+
+  // Место от куда будем данные подгружать
+  const fetchData = useCallback(() => {
+    dispatch(fetchArticlesList({
+      replace: true,
+    }));
+  }, [dispatch]);
 
   const onChangeView = useCallback((view: ArticleView) => {
     dispatch(articlesPageActions.setView(view));
   }, [dispatch]);
 
+  const onChangeOrder = useCallback((newSort: SortOrder) => {
+    dispatch(articlesPageActions.setOrder(newSort));
+    dispatch(articlesPageActions.setPage(1));
+    fetchData();
+  }, [dispatch, fetchData]);
+
+  const onChangeSort = useCallback((newOrder: ArticleSortField) => {
+    dispatch(articlesPageActions.setSort(newOrder));
+    dispatch(articlesPageActions.setPage(1));
+    fetchData();
+  }, [dispatch, fetchData]);
+
+  const onChangeSearch = useCallback((search: string) => {
+    dispatch(articlesPageActions.setSearch(search));
+    dispatch(articlesPageActions.setPage(1));
+    fetchData();
+  }, [dispatch, fetchData]);
+
   return (
     <div className={classNames(style.ArticlePageFilters, {}, [className])}>
       <div className={style.sortWrapper}>
-        <ArticleSortSelector />
+        <ArticleSortSelector
+          sort={sort}
+          order={order}
+          onChangeOrder={onChangeOrder}
+          onChangeSort={onChangeSort}
+        />
         <ArticleViewSelector view={view} onViewClick={onChangeView} />
       </div>
       <Card className={style.search}>
-        <Input placeholder={t('Поиск')} />
+        <Input
+          onChange={onChangeSearch}
+          value={search}
+          placeholder={t('Поиск')}
+        />
       </Card>
     </div>
   );

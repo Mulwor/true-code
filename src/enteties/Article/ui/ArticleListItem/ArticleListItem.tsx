@@ -79,7 +79,6 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         <div className={style.infoWrapper}>
           {types}
           {views}
-          <Icon Svg={EyeIcon} />
         </div>
         <Text text={article.title} className={style.title} />
       </Card>

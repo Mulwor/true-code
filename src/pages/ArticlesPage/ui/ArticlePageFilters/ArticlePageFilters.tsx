@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
 import { SortOrder } from 'shared/types';
+import { useDebounce } from 'shared/libs/hooks/useDebounce/useDebounce';
 import { articlesPageActions } from '../../model/slices/articlesPageSlice';
 import {
   getArticlesPageOrder,
@@ -39,6 +40,8 @@ export const ArticlesPageFilters = memo((props: ArticlePageProps) => {
     }));
   }, [dispatch]);
 
+  const debouncedFetchData = useDebounce(fetchData, 500);
+
   const onChangeView = useCallback((view: ArticleView) => {
     dispatch(articlesPageActions.setView(view));
   }, [dispatch]);
@@ -58,8 +61,8 @@ export const ArticlesPageFilters = memo((props: ArticlePageProps) => {
   const onChangeSearch = useCallback((search: string) => {
     dispatch(articlesPageActions.setSearch(search));
     dispatch(articlesPageActions.setPage(1));
-    fetchData();
-  }, [dispatch, fetchData]);
+    debouncedFetchData();
+  }, [dispatch, debouncedFetchData]);
 
   return (
     <div className={classNames(style.ArticlePageFilters, {}, [className])}>

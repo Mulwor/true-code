@@ -51,6 +51,7 @@ export type ArticleBlock = ArticleCodeBlock | ArticleImageBlock | ArticleTextBlo
 
 // db-json - articles - type
 export enum ArticleType {
+  ALL = 'ALL',
   IT = 'IT',
   SCIENCE = 'SCIENCE',
   ECONOMICS = 'ECONOMICS'

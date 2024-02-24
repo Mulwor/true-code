@@ -3,18 +3,20 @@ import { useSelector } from 'react-redux';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
 import {
-  ArticleSortField, ArticleSortSelector, ArticleView, ArticleViewSelector,
+  ArticleSortField, ArticleSortSelector, ArticleTypeTabs, ArticleView, ArticleViewSelector,
 } from 'enteties/Article';
 import { useTranslation } from 'react-i18next';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
 import { SortOrder } from 'shared/types';
 import { useDebounce } from 'shared/libs/hooks/useDebounce/useDebounce';
+import { ArticleType } from 'enteties/Article/model/types/article';
 import { articlesPageActions } from '../../model/slices/articlesPageSlice';
 import {
   getArticlesPageOrder,
   getArticlesPageSearch,
   getArticlesPageSort,
+  getArticlesPageType,
   getArticlesPageView,
 } from '../../model/selectors/articlePageSelectors';
 import style from './ArticlePageFilters.module.scss';
@@ -32,6 +34,7 @@ export const ArticlesPageFilters = memo((props: ArticlePageProps) => {
   const sort = useSelector(getArticlesPageSort);
   const order = useSelector(getArticlesPageOrder);
   const search = useSelector(getArticlesPageSearch);
+  const type = useSelector(getArticlesPageType);
 
   // Место от куда будем данные подгружать
   const fetchData = useCallback(() => {
@@ -64,6 +67,12 @@ export const ArticlesPageFilters = memo((props: ArticlePageProps) => {
     debouncedFetchData();
   }, [dispatch, debouncedFetchData]);
 
+  const onChangeType = useCallback((value: ArticleType) => {
+    dispatch(articlesPageActions.setType(value));
+    dispatch(articlesPageActions.setPage(1));
+    debouncedFetchData();
+  }, [debouncedFetchData, dispatch]);
+
   return (
     <div className={classNames(style.ArticlePageFilters, {}, [className])}>
       <div className={style.sortWrapper}>
@@ -82,6 +91,11 @@ export const ArticlesPageFilters = memo((props: ArticlePageProps) => {
           placeholder={t('Поиск')}
         />
       </Card>
+      <ArticleTypeTabs
+        className={style.tabs}
+        value={type}
+        onChangeType={onChangeType}
+      />
     </div>
   );
 });

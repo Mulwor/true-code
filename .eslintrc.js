@@ -43,7 +43,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'i18next/no-literal-string': ['error', {
       markupOnly: true,
-      // Игнорирует внутри компонента данные атрибуты
       ignoreAttribute: ['data-testid', 'to'],
     }],
     'max-len': ['error', { ignoreComments: true, code: 120 }],
@@ -52,9 +51,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
-    // Нужен для того, чтобы аргументы функции в редаксе-тулките мы могли изменять
     'no-param-reassign': 'off',
-    // key={index} - Если элементы не удаляются, не обновляются, то индекс можно юзать
     'react/no-array-index-key': 'off',
     'arrow-body-style': 'off',
   },
@@ -63,8 +60,6 @@ module.exports = {
     __API__: true,
     __PROJECT__: true,
   },
-  // Для определенного типа файлов переобпределить какие-то правила.
-  // В данном случае в тестах он игнорирует i18n
   overrides: [
     {
       files: ['**/src/**/*.{test,stories}.{ts,tsx}'],

@@ -17,9 +17,7 @@ describe('Тесты для fetchProfileData', () => {
   test('Успешное выполнение', async () => {
     const thunk = new TestAsyncThunk(fetchProfileData);
 
-    // Мокаем запрос, с сервера придет дата
     thunk.api.get.mockReturnValue(Promise.resolve({ data }));
-    // Затем с помощью данного метода callThunk вызываем
     const result = await thunk.callThunk('1');
 
     expect(thunk.api.get).toHaveBeenCalled();

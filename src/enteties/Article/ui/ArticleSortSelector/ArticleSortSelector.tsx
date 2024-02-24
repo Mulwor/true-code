@@ -35,7 +35,6 @@ export const ArticleSortSelector = memo((props: ArticleSortSelectortProps) => {
     { value: ArticleSortField.VIEWS, content: t('просмотрам') },
   ], [t]);
 
-  // Костыли, в будущем уберем и напишем через дженерики
   const changeSortHandler = useCallback((newSort: string) => {
     onChangeSort(newSort as ArticleSortField);
   }, [onChangeSort]);

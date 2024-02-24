@@ -33,8 +33,6 @@ const ArticlePage = (props: ArticlePageProps) => {
   const view = useSelector(getArticlesPageView);
   const [searchParams] = useSearchParams();
 
-  // Загрузка новых порций данных, если мы были на первой странице, то мы
-  // подгружаем вторую и т.д.
   const onLoadNextPart = useCallback(() => {
     dispatch(fetchNextArticlesPage());
   }, [dispatch]);

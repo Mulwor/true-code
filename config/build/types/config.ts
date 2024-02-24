@@ -19,6 +19,5 @@ export interface BuildOptions {
   port: number
   apiUrl: string
 
-  // Принимает значение сторибука, фронтенда и честа
   project: 'storybook' | 'frontend' | 'jest'
 }

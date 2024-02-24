@@ -19,9 +19,7 @@ describe('Тесты для компонента fetchNextArticlesPage', () => {
 
     await thunk.callThunk();
 
-    // Проверим, что диспатч вызвался у нас 4 раза
     expect(thunk.dispatch).toBeCalledTimes(4);
-    // Проверям, что фетчартикллист была вызвана с нужным нам аргументом
     expect(fetchArticlesList).toHaveBeenCalledWith({ page: 3 });
   });
 

@@ -36,7 +36,6 @@ export const ArticlesPageFilters = memo((props: ArticlePageProps) => {
   const search = useSelector(getArticlesPageSearch);
   const type = useSelector(getArticlesPageType);
 
-  // Место от куда будем данные подгружать
   const fetchData = useCallback(() => {
     dispatch(fetchArticlesList({
       replace: true,

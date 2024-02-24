@@ -11,7 +11,6 @@ interface ArticleListProps {
   className?: string;
   articles: Article[];
   isLoading?: boolean;
-  // Отображение в виде списка либо в виде плитки
   view?: ArticleView
   target?: HTMLAttributeAnchorTarget;
 }

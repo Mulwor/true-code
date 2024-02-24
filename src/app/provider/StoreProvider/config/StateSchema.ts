@@ -39,7 +39,6 @@ export interface ReducerManager {
   add: (key: StateSchemaKey, reducer: Reducer) => void
   remove: (key: StateSchemaKey) => void
 
-  // Проверяем монтирован-ли редьюсер или нет
   getMountedReducers: () => MountedReducers
 }
 
@@ -49,7 +48,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateShema> {
 
 export interface ThunkExtraArg {
   api: AxiosInstance
-  // navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {

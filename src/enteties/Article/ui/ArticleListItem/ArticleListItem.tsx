@@ -27,11 +27,6 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     className, article, view, target,
   } = props;
   const { t } = useTranslation('article');
-  // const navigate = useNavigate();
-
-  // const onOpentArticle = useCallback(() => {
-  //  navigate(RoutePath.article_details + article.id);
-  // }, [article.id, navigate]);
 
   const types = <Text text={article.type.join(', ')} className={style.types} />;
   const views = (

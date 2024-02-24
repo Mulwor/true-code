@@ -18,8 +18,6 @@ export const updateProfileData = createAsyncThunk<
 
     const errors = validateProfileData(formData);
 
-    // Если у нас есть хотя бы 1 с плохой валидацией, мы завершаем его
-    // и возвращаем ошибку
     if (errors.length) {
       return rejectWithValue(errors);
     }

@@ -5,7 +5,6 @@ const initialState: CounterScheme = {
   value: 0,
 };
 
-// Редаксовый слайс
 export const counterSlice = createSlice({
   name: 'counter',
   initialState,

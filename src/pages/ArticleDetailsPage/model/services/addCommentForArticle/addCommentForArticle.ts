@@ -34,7 +34,6 @@ export const addCommentForArticle = createAsyncThunk<
             throw new Error();
           }
 
-          // После того как нажали на enter, комментарий удаляется
           dispatch(fetchCommentsByArticleId(article.id));
 
           return response.data;

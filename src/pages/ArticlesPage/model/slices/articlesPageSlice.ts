@@ -29,7 +29,6 @@ const articlesPageSlice = createSlice({
     hasMore: true,
     _inited: false,
 
-    // Cортировка по умолчанию будет по дате создания
     sort: ArticleSortField.CREATED,
     search: '',
     order: 'asc',
@@ -59,7 +58,6 @@ const articlesPageSlice = createSlice({
     initState: (state) => {
       const view = localStorage.getItem(ARTICLE_VIEW_LOCALSTORAGE_KEY) as ArticleView;
       state.view = view;
-      // Если у нас вью будет большой, то вернется 4 статьи, если маленький то 9
       state.limit = view === ArticleView.BIG ? 4 : 9;
       state._inited = true;
     },
@@ -79,9 +77,6 @@ const articlesPageSlice = createSlice({
         action,
       ) => {
         state.isLoading = false;
-
-        // Если у нас лимит 10, а у нас пришло 5, то очевидно, что
-        // больше на бекенде статьей нет
         state.hasMore = action.payload.length >= state.limit;
 
         if (action.meta.arg.replace) {

@@ -35,7 +35,6 @@ export const Page = memo((props: PageProps) => {
 
   useInfiniteScroll({
     triggerRef,
-    // Элемент в котором у нас как раз будет скролл
     wrapperRef,
     callback: onScrollEnd,
   });

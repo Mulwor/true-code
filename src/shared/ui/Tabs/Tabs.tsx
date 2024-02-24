@@ -5,19 +5,14 @@ import cls from './Tabs.module.scss';
 
 export interface TabItem {
   value: string;
-
-  // То что будет помещаться внутри табов
   content: ReactNode;
 }
 
 interface TabsProps {
   className?: string;
   tabs: TabItem[];
-
-  // Выбранное значение
   value: string;
 
-  // Позволяет табы переключать
   onTabClick: (tab: TabItem) => void;
 }
 
@@ -29,7 +24,6 @@ export const Tabs = memo((props: TabsProps) => {
     onTabClick,
   } = props;
 
-  // Обрабатывает нажатие
   const clickHandle = useCallback((tab: TabItem) => () => {
     onTabClick(tab);
   }, [onTabClick]);

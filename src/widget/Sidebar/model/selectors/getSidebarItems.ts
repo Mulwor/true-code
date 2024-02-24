@@ -8,7 +8,6 @@ import ArticleIcon from 'shared/assets/icons/article-20-20.svg';
 import { SidebarItemType } from '../types/sidebar';
 
 export const getSidebarItems = createSelector(
-  // Получаем данные о пользователе
   getUserAuthData,
   (userData) => {
     const sidebarItemList: SidebarItemType[] = [
@@ -23,7 +22,7 @@ export const getSidebarItems = createSelector(
         text: 'О сайте',
       },
     ];
-    // Если пользователь авторизован, то добавляем следующие ссылки
+
     if (userData) {
       sidebarItemList.push(
         {

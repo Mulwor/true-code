@@ -14,7 +14,6 @@ export const validateProfileData = (profile?: Profile) => {
 
   const errors: ValidateProfileError[] = [];
 
-  // Если у нас отсутсвуют имя и фамилия, то верни ошибку
   if (!first || !lastname) {
     errors.push(ValidateProfileError.INCORRECT_USER_DATA);
   }
@@ -23,7 +22,6 @@ export const validateProfileData = (profile?: Profile) => {
     errors.push(ValidateProfileError.INCORRECT_COUNTRY);
   }
 
-  // Если у нас указан возраст и этот возраст не является целочисленным, то
   if (!age || !Number.isInteger(age)) {
     errors.push(ValidateProfileError.INCORRECT_AGE);
   }

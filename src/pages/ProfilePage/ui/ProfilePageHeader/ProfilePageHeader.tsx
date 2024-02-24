@@ -24,8 +24,6 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
   const dispatch = useAppDispatch();
 
   const authData = useSelector(getUserAuthData);
-  // 2. Необходим для проверки текущего пользователя с карточкой пользователя, который
-  // рассматриваем
   const profileData = useSelector(getProfileData);
   const canEdit = authData?.id === profileData?.id;
 

@@ -27,10 +27,8 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
     const mountedReducers = store.reducerManager.getMountedReducers();
 
     Object.entries(reducers).forEach(([name, reducer]) => {
-      // По названию редьюсера достаем нужный нам редьюсер
       const mounted = mountedReducers[name as StateSchemaKey];
 
-      // И если он не вмонтирован, то добавляем его
       if (!mounted) {
         store.reducerManager.add(name as StateSchemaKey, reducer);
         dispatch({ type: `@INIT ${name} reducer` });

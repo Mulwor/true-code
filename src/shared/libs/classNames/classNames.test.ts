@@ -1,5 +1,4 @@
 import { classNames } from 'shared/libs/classNames/classNames';
-// import { classNames } from './classNames';
 
 describe('classNames', () => {
   test('with only first param', () => {

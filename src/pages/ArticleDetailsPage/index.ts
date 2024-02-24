@@ -9,3 +9,7 @@ export {
 export {
   ArticleDetailRecommendationsShema,
 } from './model/types/ArticleDetailsRecommendationsSchema';
+
+export {
+  ArticleDetailsPageSchema,
+} from './model/types';

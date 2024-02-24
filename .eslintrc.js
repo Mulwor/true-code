@@ -56,6 +56,7 @@ module.exports = {
     'no-param-reassign': 'off',
     // key={index} - Если элементы не удаляются, не обновляются, то индекс можно юзать
     'react/no-array-index-key': 'off',
+    'arrow-body-style': 'off',
   },
   globals: {
     __IS_DEV__: true,

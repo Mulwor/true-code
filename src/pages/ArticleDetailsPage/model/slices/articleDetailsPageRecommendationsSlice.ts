@@ -1,6 +1,5 @@
-import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { StateShema } from 'app/provider/StoreProvider';
-import { Comment } from 'enteties/Comment';
 import { Article } from 'enteties/Article';
 import { ArticleDetailRecommendationsShema } from '../types/ArticleDetailsRecommendationsSchema';
 import { fetchArticleRecommendations } from '../services/fetchArticleRecommendation/fetchArticleRecommendation';
@@ -10,7 +9,7 @@ const recommendationsAdapter = createEntityAdapter<Article>({
 });
 
 export const getArticleRecommendations = recommendationsAdapter.getSelectors<StateShema>(
-  (state) => state.articleDetailRecommendations || recommendationsAdapter.getInitialState(),
+  (state) => state.articleDetailsPage?.recommmendations || recommendationsAdapter.getInitialState(),
 );
 
 const articleDetailsPageRecommendationsSlice = createSlice({

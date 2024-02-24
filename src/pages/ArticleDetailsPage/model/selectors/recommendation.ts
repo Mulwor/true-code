@@ -1,4 +1,9 @@
 import { StateShema } from 'app/provider/StoreProvider';
 
-export const getArticleRecommendationsIsLoading = (state: StateShema) => state.articleDetailRecommendations?.isLoading;
-export const getArticleRecommendationsError = (state: StateShema) => state.articleDetailRecommendations?.error;
+export const getArticleRecommendationsIsLoading = (state: StateShema) => {
+  return state.articleDetailsPage?.comments?.isLoading
+};
+
+export const getArticleRecommendationsError = (state: StateShema) => {
+  return state.articleDetailsPage?.comments?.error
+};

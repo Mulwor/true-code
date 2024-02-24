@@ -24,6 +24,7 @@ const articlesPageSlice = createSlice({
     entities: {},
     view: ArticleView.SMALL,
     page: 1,
+    limit: 9,
     hasMore: true,
     _inited: false,
 
@@ -72,9 +73,10 @@ const articlesPageSlice = createSlice({
         action,
       ) => {
         state.isLoading = false;
-        // Если у нас есть хотя бы 1 элемент в массив, то мы считаем,
-        // что на сервере еще данные есть
-        state.hasMore = action.payload.length > 0;
+
+        // Если у нас лимит 10, а у нас пришло 5, то очевидно, что
+        // больше на бекенде статьей нет
+        state.hasMore = action.payload.length >= state.limit;
 
         if (action.meta.arg.replace) {
           articlesAdapter.setAll(state, action.payload);

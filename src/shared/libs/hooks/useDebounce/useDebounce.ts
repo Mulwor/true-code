@@ -4,7 +4,6 @@ import { MutableRefObject, useCallback, useRef } from 'react';
 // Другими словами - до тех пор пока мы что-то водим в инпут, у нас
 // коллбек вызываться не будет, как только пройдет время у нас
 // вызвется коллбек, а все предыдущие вызовы будут отменены.
-
 export function useDebounce(callback: (...args: any[]) => void, delay: number) {
   const timer = useRef() as MutableRefObject<any>;
 

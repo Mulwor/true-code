@@ -6,6 +6,7 @@ import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch'
 import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialEffect';
 import { useSelector } from 'react-redux';
 import { Page } from 'widget/Page/Page';
+import { useSearchParams } from 'react-router-dom';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import {
   getArticlesPageIsLoading,
@@ -30,6 +31,7 @@ const ArticlePage = (props: ArticlePageProps) => {
   const articles = useSelector(getArticles.selectAll);
   const isLoading = useSelector(getArticlesPageIsLoading);
   const view = useSelector(getArticlesPageView);
+  const [searchParams] = useSearchParams();
 
   // Загрузка новых порций данных, если мы были на первой странице, то мы
   // подгружаем вторую и т.д.
@@ -38,7 +40,7 @@ const ArticlePage = (props: ArticlePageProps) => {
   }, [dispatch]);
 
   useInitialEffect(() => {
-    dispatch(initArticlesPage());
+    dispatch(initArticlesPage(searchParams));
   });
 
   return (

@@ -20,7 +20,7 @@ describe('Тесты для fetchProfileData', () => {
     // Мокаем запрос, с сервера придет дата
     thunk.api.get.mockReturnValue(Promise.resolve({ data }));
     // Затем с помощью данного метода callThunk вызываем
-    const result = await thunk.callThunk();
+    const result = await thunk.callThunk('1');
 
     expect(thunk.api.get).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('fulfilled');
@@ -30,7 +30,7 @@ describe('Тесты для fetchProfileData', () => {
   test('Неуспешное выполнение', async () => {
     const thunk = new TestAsyncThunk(fetchProfileData);
     thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
-    const result = await thunk.callThunk();
+    const result = await thunk.callThunk('1');
 
     expect(result.meta.requestStatus).toBe('rejected');
   });

@@ -3,6 +3,7 @@ import { Counter } from 'enteties/Counter';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from 'shared/ui/Input/Input';
+import { Page } from 'widget/Page/Page';
 
 function MainPage() {
   const { t } = useTranslation();
@@ -13,12 +14,12 @@ function MainPage() {
   };
 
   return (
-    <div>
+    <Page>
       <BugButton />
       {t('Главная страница')}
       <Counter />
       <Input value={value} onChange={onChange} placeholder={t('Инпут')} autofocus />
-    </div>
+    </Page>
   );
 }
 

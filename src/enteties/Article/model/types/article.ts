@@ -1,3 +1,15 @@
+import { User } from 'enteties/User';
+
+// Сортировать будем по трем пункта
+export enum ArticleSortField {
+  // По просмотрам
+  VIEWS = 'views',
+  // По заголовка
+  TITLE = 'title',
+  // И по дате создания
+  CREATED = 'createdAt',
+}
+
 // db-json - articles - blocks - type
 export enum ArticleBlockType {
   CODE = 'CODE',
@@ -39,15 +51,23 @@ export type ArticleBlock = ArticleCodeBlock | ArticleImageBlock | ArticleTextBlo
 
 // db-json - articles - type
 export enum ArticleType {
+  ALL = 'ALL',
   IT = 'IT',
   SCIENCE = 'SCIENCE',
   ECONOMICS = 'ECONOMICS'
+}
+
+// Enum для отображения в виде списка либо в виде плитки
+export enum ArticleView {
+  BIG = 'BIG',
+  SMALL = 'SMALL'
 }
 
 export interface Article {
   id: string;
   title: string;
   subtitle: string;
+  user: User;
   img: string;
   views: number;
   createdAt: string;

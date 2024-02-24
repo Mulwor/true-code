@@ -54,6 +54,8 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
     // Нужен для того, чтобы аргументы функции в редаксе-тулките мы могли изменять
     'no-param-reassign': 'off',
+    // key={index} - Если элементы не удаляются, не обновляются, то индекс можно юзать
+    'react/no-array-index-key': 'off',
   },
   globals: {
     __IS_DEV__: true,

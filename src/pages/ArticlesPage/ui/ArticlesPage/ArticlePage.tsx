@@ -1,21 +1,60 @@
-import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { memo, useCallback } from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
+import { ArticleList } from 'enteties/Article';
+import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
+import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialEffect';
+import { useSelector } from 'react-redux';
+import { Page } from 'widget/Page/Page';
+import { useSearchParams } from 'react-router-dom';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
+import {
+  getArticlesPageIsLoading,
+  getArticlesPageView,
+} from '../../model/selectors/articlePageSelectors';
+import { articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice';
 import style from './ArticlePage.module.scss';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { ArticlesPageFilters } from '../ArticlePageFilters/ArticlePageFilters';
 
 interface ArticlePageProps {
   className?: string;
 }
 
+const reducers: ReducersList = {
+  articlesPage: articlesPageReducer,
+};
+
 const ArticlePage = (props: ArticlePageProps) => {
   const { className } = props;
-  const { t } = useTranslation('article');
+  const dispatch = useAppDispatch();
+  const articles = useSelector(getArticles.selectAll);
+  const isLoading = useSelector(getArticlesPageIsLoading);
+  const view = useSelector(getArticlesPageView);
+  const [searchParams] = useSearchParams();
+
+  // Загрузка новых порций данных, если мы были на первой странице, то мы
+  // подгружаем вторую и т.д.
+  const onLoadNextPart = useCallback(() => {
+    dispatch(fetchNextArticlesPage());
+  }, [dispatch]);
+
+  useInitialEffect(() => {
+    dispatch(initArticlesPage(searchParams));
+  });
 
   return (
-    // eslint-disable-next-line i18next/no-literal-string
-    <div className={classNames(style.ArticlePage, {}, [className])}>
-      Данная страница отвечает за список все статьей, поиск, фильтр
-    </div>
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+      <Page onScrollEnd={onLoadNextPart} className={classNames(style.ArticlePage, {}, [className])}>
+        <ArticlesPageFilters />
+        <ArticleList
+          isLoading={isLoading}
+          view={view}
+          articles={articles}
+          className={style.list}
+        />
+      </Page>
+    </DynamicModuleLoader>
   );
 };
 

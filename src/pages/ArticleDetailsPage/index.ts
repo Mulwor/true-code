@@ -5,3 +5,7 @@ export {
 export {
   ArticleDetailCommentsShema,
 } from './model/types/ArticleDetailCommentsSchema';
+
+export {
+  ArticleDetailRecommendationsShema,
+} from './model/types/ArticleDetailsRecommendationsSchema';

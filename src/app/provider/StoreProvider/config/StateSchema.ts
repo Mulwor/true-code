@@ -13,7 +13,7 @@ import { UserSchema } from 'enteties/User';
 import { LoginSchema } from 'features/AuthByUsername';
 import { AddCommentFormSchema } from 'features/addCommentsForm';
 import { ScrollRestrationSchema } from 'features/scrollRestaration';
-import { ArticleDetailCommentsShema } from 'pages/ArticleDetailsPage';
+import { ArticleDetailCommentsShema, ArticleDetailRecommendationsShema } from 'pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { To, NavigateOptions } from 'react-router-dom';
 
@@ -26,6 +26,7 @@ export interface StateShema {
   profile?: ProfileSchema;
   articleDetails?: ArticleDetailsSchema;
   articleDetailsComments?: ArticleDetailCommentsShema;
+  articleDetailRecommendations?: ArticleDetailRecommendationsShema;
   addCommentForm?: AddCommentFormSchema;
   articlesPage?: ArticlesPageSchema;
 }

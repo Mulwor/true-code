@@ -84,6 +84,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
           articles={recomendations}
           isLoading={recommendationsIsLoading}
           className={style.recomendations}
+          target="_blank"
         />
         <Text
           className={style.commentTitle}

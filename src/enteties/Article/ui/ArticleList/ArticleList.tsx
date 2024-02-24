@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/libs/classNames/classNames';
-import { memo } from 'react';
+import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import style from './ArticleList.module.scss';
 import { Article, ArticleView } from '../../model/types/article';
@@ -13,6 +13,7 @@ interface ArticleListProps {
   isLoading?: boolean;
   // Отображение в виде списка либо в виде плитки
   view?: ArticleView
+  target?: HTMLAttributeAnchorTarget;
 }
 
 const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.SMALL ? 9 : 3)
@@ -26,6 +27,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     className,
     articles,
     isLoading,
+    target,
     view = ArticleView.SMALL,
   } = props;
   const { t } = useTranslation('article');
@@ -36,6 +38,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
       view={view}
       className={style.card}
       key={article.id}
+      target={target}
     />
   );
 

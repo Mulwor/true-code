@@ -4,6 +4,10 @@ export type BuildPaths = {
   build: string
   html: string
   src: string
+  // Указываем путь до файлов с переводами
+  locales: string;
+  // Куда эти переводы необходим перемещать
+  buildLocales: string;
 }
 
 export interface BuildEnv {

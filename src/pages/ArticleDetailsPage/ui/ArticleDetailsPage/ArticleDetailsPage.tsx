@@ -27,13 +27,14 @@ import { getArticleComments } from '../../model/slices/articleDetailsCommentsSli
 import style from './ArticleDetalisPage.module.scss';
 import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendation';
 import { articleDetailsPageReducer } from '../../model/slices';
+import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 
 interface ArticleDetailsPageProps {
   className?: string;
 }
 
 const reducers: ReducersList = {
-  articleDetailsPage: articleDetailsPageReducer
+  articleDetailsPage: articleDetailsPageReducer,
 };
 
 const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
@@ -47,15 +48,9 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   const recomendations = useSelector(getArticleRecommendations.selectAll);
   const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
 
-  const navigate = useNavigate();
-
   const onSendComment = useCallback((text: string) => {
     dispatch(addCommentForArticle(text));
   }, [dispatch]);
-
-  const onBackToList = useCallback(() => {
-    navigate(RoutePath.articles);
-  }, [navigate]);
 
   useInitialEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
@@ -71,9 +66,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <Page className={classNames(style.ArticleDetailsPage, {}, [className])}>
-        <Button theme={ThemeButton.OUTLINE} onClick={onBackToList}>
-          {t('Назад к списку')}
-        </Button>
+        <ArticleDetailsPageHeader />
         <ArticleDetails id={id} />
         <Text
           className={style.commentTitle}
@@ -84,6 +77,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
           articles={recomendations}
           isLoading={recommendationsIsLoading}
           className={style.recomendations}
+          // eslint-disable-next-line i18next/no-literal-string
           target="_blank"
         />
         <Text

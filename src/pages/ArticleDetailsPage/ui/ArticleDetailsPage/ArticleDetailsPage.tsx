@@ -11,14 +11,15 @@ import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialE
 import { AddCommentForm } from 'features/addCommentsForm';
 import { Page } from 'widget/Page/Page';
 import {
+  addCommentForArticle,
+} from 'pages/ArticleDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
+import {
   fetchArticleRecommendations,
 } from '../../model/services/fetchArticleRecommendation/fetchArticleRecommendation';
 import {
   getArticleRecommendations,
 } from '../../model/slices/articleDetailsPageRecommendationsSlice';
-import {
-  addCommentForArticle,
-} from '../../model/services/addCommentForArticle/addCommentForArticle';
+
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice';

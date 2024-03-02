@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
-import { ArticleList } from 'enteties/Article';
+import { ArticleList } from 'entities/Article';
 import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialEffect';

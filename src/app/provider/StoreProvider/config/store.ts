@@ -1,8 +1,8 @@
 import {
   CombinedState, Reducer, ReducersMapObject, configureStore,
 } from '@reduxjs/toolkit';
-import { counterReducer } from 'enteties/Counter';
-import { userReducer } from 'enteties/User';
+import { counterReducer } from 'entities/Counter';
+import { userReducer } from 'entities/User';
 import { $api } from 'shared/api/api';
 import { scrollRestrationReducer } from 'features/scrollRestaration';
 import { StateShema, ThunkExtraArg } from './StateSchema';

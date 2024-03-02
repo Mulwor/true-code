@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import {
   getProfileData, getProfileReadonly, profileActions, updateProfileData,
-} from 'enteties/Profile';
+} from 'entities/Profile';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
-import { getUserAuthData } from 'enteties/User';
+import { getUserAuthData } from 'entities/User';
 import style from './ProfilePageHeader.module.scss';
 
 interface ProfilePageHeaderProps {

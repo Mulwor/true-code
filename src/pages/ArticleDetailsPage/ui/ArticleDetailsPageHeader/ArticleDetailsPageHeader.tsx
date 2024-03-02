@@ -5,8 +5,8 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { useSelector } from 'react-redux';
-import { getUserAuthData } from 'enteties/User';
-import { getArticleDetailsData } from 'enteties/Article';
+import { getUserAuthData } from 'entities/User';
+import { getArticleDetailsData } from 'entities/Article';
 import { getCanEditArticle } from '../../model/selectors/article';
 import style from './ArticleDetailsPageHeader.module.scss';
 

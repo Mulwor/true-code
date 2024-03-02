@@ -1,16 +1,14 @@
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/libs/classNames/classNames';
-import { ArticleDetails, ArticleList } from 'enteties/Article';
-import { useNavigate, useParams } from 'react-router-dom';
+import { ArticleDetails, ArticleList } from 'entities/Article';
+import { useParams } from 'react-router-dom';
 import { Text, TextSize } from 'shared/ui/Text/Text';
-import { CommentList } from 'enteties/Comment';
+import { CommentList } from 'entities/Comment';
 import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useDispatch, useSelector } from 'react-redux';
 import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialEffect';
 import { AddCommentForm } from 'features/addCommentsForm';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Page } from 'widget/Page/Page';
 import {
   fetchArticleRecommendations,

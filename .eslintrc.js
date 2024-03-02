@@ -49,7 +49,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'i18next/no-literal-string': ['error', {
       markupOnly: true,
-      ignoreAttribute: ['data-testid', 'to'],
+      ignoreAttribute: ['data-testid', 'to', 'justify'],
     }],
     'max-len': ['error', { ignoreComments: true, code: 120 }],
     'jsx-a11y/click-events-have-key-events': 'off',

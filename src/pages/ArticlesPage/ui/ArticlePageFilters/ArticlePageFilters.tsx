@@ -4,13 +4,13 @@ import { classNames } from 'shared/libs/classNames/classNames';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
 import {
   ArticleSortField, ArticleSortSelector, ArticleTypeTabs, ArticleView, ArticleViewSelector,
-} from 'enteties/Article';
+} from 'entities/Article';
 import { useTranslation } from 'react-i18next';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
 import { SortOrder } from 'shared/types';
 import { useDebounce } from 'shared/libs/hooks/useDebounce/useDebounce';
-import { ArticleType } from 'enteties/Article/model/types/article';
+import { ArticleType } from 'entities/Article/model/types/article';
 import { articlesPageActions } from '../../model/slices/articlesPageSlice';
 import {
   getArticlesPageOrder,
@@ -36,7 +36,6 @@ export const ArticlesPageFilters = memo((props: ArticlePageProps) => {
   const search = useSelector(getArticlesPageSearch);
   const type = useSelector(getArticlesPageType);
 
-  // Место от куда будем данные подгружать
   const fetchData = useCallback(() => {
     dispatch(fetchArticlesList({
       replace: true,

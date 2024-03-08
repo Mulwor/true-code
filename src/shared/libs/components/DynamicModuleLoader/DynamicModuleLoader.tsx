@@ -1,10 +1,10 @@
 import { Reducer } from '@reduxjs/toolkit';
-import { ReduxStoreWithManager, StateSchemaKey } from 'app/provider/StoreProvider/config/StateSchema';
+import { ReduxStoreWithManager, StateSchemaKey, StateShema } from 'app/provider/StoreProvider/config/StateSchema';
 import { FC, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 
 export type ReducersList = {
-  [name in StateSchemaKey]?: Reducer
+  [name in StateSchemaKey]?: Reducer<NonNullable<StateShema[name]>>
 }
 
 type ReducersListEntry = [StateSchemaKey, Reducer]
@@ -27,10 +27,8 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
     const mountedReducers = store.reducerManager.getMountedReducers();
 
     Object.entries(reducers).forEach(([name, reducer]) => {
-      // По названию редьюсера достаем нужный нам редьюсер
       const mounted = mountedReducers[name as StateSchemaKey];
 
-      // И если он не вмонтирован, то добавляем его
       if (!mounted) {
         store.reducerManager.add(name as StateSchemaKey, reducer);
         dispatch({ type: `@INIT ${name} reducer` });

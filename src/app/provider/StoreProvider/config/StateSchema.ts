@@ -6,16 +6,15 @@ import {
   ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { ArticleDetailsSchema } from 'enteties/Article';
-import { CounterScheme } from 'enteties/Counter';
-import { ProfileSchema } from 'enteties/Profile';
-import { UserSchema } from 'enteties/User';
+import { ArticleDetailsSchema } from 'entities/Article';
+import { CounterScheme } from 'entities/Counter';
+import { ProfileSchema } from 'entities/Profile';
+import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
 import { AddCommentFormSchema } from 'features/addCommentsForm';
 import { ScrollRestrationSchema } from 'features/scrollRestaration';
-import { ArticleDetailCommentsShema, ArticleDetailRecommendationsShema } from 'pages/ArticleDetailsPage';
+import { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
-import { To, NavigateOptions } from 'react-router-dom';
 
 export interface StateShema {
   counter: CounterScheme;
@@ -25,8 +24,7 @@ export interface StateShema {
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
   articleDetails?: ArticleDetailsSchema;
-  articleDetailsComments?: ArticleDetailCommentsShema;
-  articleDetailRecommendations?: ArticleDetailRecommendationsShema;
+  articleDetailsPage?: ArticleDetailsPageSchema;
   addCommentForm?: AddCommentFormSchema;
   articlesPage?: ArticlesPageSchema;
 }
@@ -41,7 +39,6 @@ export interface ReducerManager {
   add: (key: StateSchemaKey, reducer: Reducer) => void
   remove: (key: StateSchemaKey) => void
 
-  // Проверяем монтирован-ли редьюсер или нет
   getMountedReducers: () => MountedReducers
 }
 
@@ -51,7 +48,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateShema> {
 
 export interface ThunkExtraArg {
   api: AxiosInstance
-  // navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {

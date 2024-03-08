@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/provider/StoreProvider';
-import { Comment } from 'enteties/Comment';
-import { getUserAuthData } from 'enteties/User';
-import { getArticleDetailsData } from 'enteties/Article/model/selectors/articleDetails';
+import { Comment } from 'entities/Comment';
+import { getUserAuthData } from 'entities/User';
+import { getArticleDetailsData } from 'entities/Article/model/selectors/articleDetails';
 import { fetchCommentsByArticleId } from '../../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
 export const addCommentForArticle = createAsyncThunk<
@@ -34,7 +34,6 @@ export const addCommentForArticle = createAsyncThunk<
             throw new Error();
           }
 
-          // После того как нажали на enter, комментарий удаляется
           dispatch(fetchCommentsByArticleId(article.id));
 
           return response.data;

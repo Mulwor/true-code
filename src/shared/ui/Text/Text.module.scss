@@ -16,6 +16,16 @@
   }
 }
 
+.inverted {
+  .title {
+    color: var(--inverted-primary-color);
+  }
+
+  .text {
+    color: var(--inverted-secondary-color);
+  }
+}
+
 .left {
   text-align: left;
 }
@@ -45,5 +55,15 @@
 
   .text {
     font: var(--font-l);
+  }
+}
+
+.size_s {
+  .title {
+    font: var(--font-s);
+  }
+
+  .text {
+    font: var(--font-s);
   }
 }

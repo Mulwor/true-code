@@ -1,23 +1,19 @@
 import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { StateShema } from 'app/provider/StoreProvider';
-import { Comment } from 'enteties/Comment';
+import { Comment } from 'entities/Comment';
 import { ArticleDetailCommentsShema } from '../types/ArticleDetailCommentsSchema';
 import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
 const commentsAdapter = createEntityAdapter<Comment>({
-  // Фукция, которая принимает один аргумент и возвращает уникальный id этого
-  // объекта. Он используется для эффективного управления коллекцией объектов.
   selectId: (comment) => comment.id,
 });
 
-// Селектор с помощью которого получаем комментарии
 export const getArticleComments = commentsAdapter.getSelectors<StateShema>(
-  (state) => state.articleDetailsComments || commentsAdapter.getInitialState(),
+  (state) => state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
 );
 
 const articleDetailsCommentsSlice = createSlice({
   name: 'articleDetailsCommentSlice',
-  // <ArticleDetailCommentsShema> - необходим для того, чтобы добавить поля загрузки и ошибки
   initialState: commentsAdapter.getInitialState<ArticleDetailCommentsShema>({
     isLoading: false,
     error: undefined,

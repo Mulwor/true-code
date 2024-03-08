@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
-import { ArticleList } from 'enteties/Article';
+import { ArticleList } from 'entities/Article';
 import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/libs/hooks/useInitialEffect/useInitialEffect';
@@ -33,8 +33,6 @@ const ArticlePage = (props: ArticlePageProps) => {
   const view = useSelector(getArticlesPageView);
   const [searchParams] = useSearchParams();
 
-  // Загрузка новых порций данных, если мы были на первой странице, то мы
-  // подгружаем вторую и т.д.
   const onLoadNextPart = useCallback(() => {
     dispatch(fetchNextArticlesPage());
   }, [dispatch]);

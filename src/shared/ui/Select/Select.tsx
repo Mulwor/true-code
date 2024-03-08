@@ -12,7 +12,6 @@ interface SelectProps {
   label?: string;
   options?: SelectOption[];
 
-  // Принимаем выбранное значение и с помощью этого мы его отразим
   value?: string;
   onChange?: (value: string) => void;
   readonly?: boolean
@@ -36,11 +35,6 @@ export const Select = memo((props: SelectProps) => {
 
   const onChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     onChange?.(event.target.value);
-    /*
-      if (onChange) {
-        onChange(event.target.value)
-      }
-    */
   };
 
   const mods: Mods = {};

@@ -1,0 +1,21 @@
+{
+  "profile": "Profile",
+  "edit": "Edit",
+  "name": "Name",
+  "surname": "Surname",
+  "age": "Age",
+  "city": "City",
+  "error-profile": "There was an error loading your profile",
+  "refresh-page": "Try refreshing the page",
+  "cancel": "Cancel",
+  "save": "Save",
+  "avatar": "Your photo",
+  "another-name": "Username",
+  "currency": "Please choose your currency",
+  "country": "Please choose your country",
+  "validate-user-data": "Name and surname must it",
+  "validate-age": "Incorrect age",
+  "validate-country": "Incorrect country",
+  "no-data": "Data is not written",
+  "server": "Servere error when save data"
+}

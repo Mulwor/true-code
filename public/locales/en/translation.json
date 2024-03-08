@@ -1,0 +1,17 @@
+{
+  "Главная": "Main",
+  "Профиль": "Profile",
+  "Русский": "English",
+  "RUS": "EN",
+  "Главная страница": "Main page",
+  "Войти": "Login",
+  "Выйти": "Logout",
+  "Страница не найдена": "Page not found",
+  "Произошла непредвиденная ошибка": "Have mistake",
+  "Кнопела": "Button",
+  "Инпут": "input",
+  "Форма авторизации": "Auth Form",
+  "Логин": "login",
+  "Пароль": "password",
+  "Вы ввели неверный логин или пароль": "You wrote wrong login and password"
+}
